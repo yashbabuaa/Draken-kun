@@ -1,6 +1,6 @@
 import logging 
 import os 
-from telethon import *
+from telethon import TelegramClient, events, Button
 
 bot_token = os.environ.get('BOT_TOKEN')
 api_id = os.environ.get('API_ID')
