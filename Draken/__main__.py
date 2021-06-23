@@ -6,7 +6,7 @@ draken_token = os.environ.get('BOT_TOKEN')
 api_id = os.environ.get('API_ID')
 api_hash = os.environ.get('API_HASH')
 
-draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_tokem)
+draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
 
