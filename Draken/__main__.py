@@ -1,5 +1,6 @@
 from Draken import draken
 import logging 
+import requester
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
 
