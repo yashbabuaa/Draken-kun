@@ -2,8 +2,8 @@ from telethon import *
 from Draken import draken 
 
 
-@draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)')):
-async def request(mikey)
+@draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
+async def request(mikey):
   query = mikey.message.text.split(" ", 1)
   chat = -1001487075546
   try:
