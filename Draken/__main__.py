@@ -40,7 +40,7 @@ async def request(mikey):
     except TypeError:
       pass
   if keybo == []:
-    req_user = f"[{mikey.from_user.first_name}](tg://user?id={mikey.from_user.id})" 
+    req_user = f"[{mikey.sender_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/1364238597/{mikey.message.id}"
     text = f"Request: {query}\nRequested by: {req_user}\nMessage link: [limk]({link})"
     await draken.send_message(-1001226512514, text)
@@ -48,7 +48,7 @@ async def request(mikey):
     return
   m = await mikey.message.reply("Found Some Results!", buttons = [[Button.url(text = "Check Pm!", url = "http://t.me/drakenROdraken")]])
   try:
-    await draken.send_message(mikey.from_user.id, text = "Found some matches for you!", buttons = [keybo])
+    await draken.send_message(mikey.sender_id, text = "Found some matches for you!", buttons = [keybo])
   except errors.UserIsBlockedError:
     await m.edit("I haven't met you yet please start me and request again!", button = [[Button.url(text="Start", url = "https://t.me/drakenROdraken")]])
   
