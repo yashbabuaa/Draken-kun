@@ -53,13 +53,13 @@ async def request(mikey):
     await draken.send_message(mikey.sender_id, "Found some matches for you!, if the thing you are finding isnt here, please request with more refined words", buttons = keybo)
   except errors.PeerIdInvalidError:
     await m.delete()
-    await mikey.reply("I haven't met you yet please start me and request again!", button = [[Button.url(text="Start", url = "https://t.me/DRAKENROBOT")]])
+    await mikey.reply("I haven't met you yet please start me and request again!", buttons = [[Button.url(text="Start", url = "https://t.me/DRAKENROBOT")]])
   
     
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
   await mikey.message.reply('Ahh you can request now @SeriesArchiveDiscussion, Im a draken specifically made just to handle request, so go and request if you want something!!!', buttons = [[Button.url(text = "SeriesArchiveDiscussion", url = "https://t.me/SeriesArchiveDiscussion")], [Button.url(text = "Creator", url = "https://t.me/DontKnowWhoRU")]])
-  await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.name}](tg://user?id={mikey.sender_id}) started the bot!")
+  await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
 
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
