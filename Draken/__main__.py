@@ -43,14 +43,14 @@ async def request(mikey):
       pass
   if keybo == []:
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
-    message_link = f"https://t.me/c/1280998345/{mikey.message.id}"
+    message_link = f"https://t.me/c/1364238597/{mikey.message.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
-    await draken.send_message(-1001227278561, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
+    await draken.send_message(-1001226512514, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
     await mikey.message.reply("Roger! Request sent, Now wait like a good citizen.")
     return
   m = await mikey.message.reply("Found Some Results!", buttons = [[Button.url(text = "Check Pm!", url = "http://t.me/DRAKENROBOT")]])
   try:
-    await draken.send_message(mikey.sender_id, "Found some matches for you!", buttons = keybo)
+    await draken.send_message(mikey.sender_id, "Found some matches for you!, if the thing you are finding isnt here, please request with more refined words", buttons = keybo)
   except errors.PeerIdInvalidError:
     await m.delete()
     await mikey.reply("I haven't met you yet please start me and request again!", button = [[Button.url(text="Start", url = "https://t.me/DRAKENROBOT")]])
@@ -59,6 +59,7 @@ async def request(mikey):
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
   await mikey.message.reply('Ahh you can request now @SeriesArchiveDiscussion, Im a draken specifically made just to handle request, so go and request if you want something!!!', buttons = [[Button.url(text = "SeriesArchiveDiscussion", url = "https://t.me/SeriesArchiveDiscussion")], [Button.url(text = "Creator", url = "https://t.me/DontKnowWhoRU")]])
+  await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.name}](tg://user?id={mikey.sender_id}) started the bot!")
 
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
