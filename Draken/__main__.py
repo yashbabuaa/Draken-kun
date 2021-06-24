@@ -48,7 +48,7 @@ async def request(mikey):
     return
   m = await mikey.message.reply("Found Some Results!", buttons = [[Button.url(text = "Check Pm!", url = "http://t.me/drakenROdraken")]])
   try:
-    await draken.send_message(mikey.sender_id, text = "Found some matches for you!", buttons = [keybo])
+    await draken.send_message(mikey.sender_id, "Found some matches for you!", buttons = [keybo])
   except errors.UserIsBlockedError:
     await m.edit("I haven't met you yet please start me and request again!", button = [[Button.url(text="Start", url = "https://t.me/drakenROdraken")]])
   
