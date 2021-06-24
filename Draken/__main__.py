@@ -32,10 +32,13 @@ async def request(mikey):
     return
   keybo = []
   async for message in takemichi.iter_messages(chat):
-    title = message.text[:20]
-    msg_id = message.id 
-    link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
-    keybo.append([Button.url(text = title, url = link)])
+    try:
+      title = message.text[:20]
+      msg_id = message.id 
+      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
+      keybo.append([Button.url(text = title, url = link)])
+    except TypeError:
+      pass
   if keybo == []:
     req_user = f"[{mikey.from_user.first_name}](tg://user?id={mikey.from_user.id})" 
     message_link = f"https://t.me/c/1364238597/{mikey.message.id}"
