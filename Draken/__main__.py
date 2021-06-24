@@ -44,8 +44,8 @@ async def request(mikey):
   if keybo == []:
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/1280998345/{mikey.message.id}"
-    text = f"Request: {query}\nRequested by: {req_user}\nMessage link: [limk]({message_link})"
-    await draken.send_message(-1001227278561, text)
+    text = f"Request: {query}\nRequested by: {req_user}\n"
+    await draken.send_message(-1001227278561, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
     await mikey.message.reply("Roger! Request sent, Now wait like a good citizen.")
     return
   m = await mikey.message.reply("Found Some Results!", buttons = [[Button.url(text = "Check Pm!", url = "http://t.me/DRAKENROBOT")]])
@@ -56,9 +56,13 @@ async def request(mikey):
     await mikey.reply("I haven't met you yet please start me and request again!", button = [[Button.url(text="Start", url = "https://t.me/DRAKENROBOT")]])
   
     
-@draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@drakenROdraken')) 
+@draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
   await mikey.message.reply('Ahh you can request now @SeriesArchiveDiscussion, Im a draken specifically made just to handle request, so go and request if you want something!!!', buttons = [[Button.url(text = "SeriesArchiveDiscussion", url = "https://t.me/SeriesArchiveDiscussion")], [Button.url(text = "Creator", url = "https://t.me/DontKnowWhoRU")]])
+
+@draken.on(events.CallbackQuery(pattern=b'recomp'))
+async def de(mikey):
+  await mikey.edit("Request Completed!!!")
 
 print('Im online!!!')
 
