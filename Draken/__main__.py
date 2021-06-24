@@ -46,7 +46,7 @@ async def request(mikey):
     message_link = f"https://t.me/c/1280998345/{mikey.message.id}"
     text = f"Request: {query}\nRequested by: {req_user}\nMessage link: [limk]({message_link})"
     await draken.send_message(-1001227278561, text)
-    await mikey.message.reply_text("Roger! Request sent, Now wait like a good citizen.")
+    await mikey.message.reply("Roger! Request sent, Now wait like a good citizen.")
     return
   m = await mikey.message.reply("Found Some Results!", buttons = [[Button.url(text = "Check Pm!", url = "http://t.me/DRAKENROBOT")]])
   try:
