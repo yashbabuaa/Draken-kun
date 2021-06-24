@@ -23,6 +23,8 @@ logger = logging.getLogger("__name__")
 
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
 async def request(mikey):
+  if mikey.chat.is_private:
+    return 
   query = mikey.message.text.split(" ", 1)
   chat = -1001487075546
   try:
@@ -42,7 +44,7 @@ async def request(mikey):
   if keybo == []:
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/1364238597/{mikey.message.id}"
-    text = f"Request: {query}\nRequested by: {req_user}\nMessage link: [limk]({link})"
+    text = f"Request: {query}\nRequested by: {req_user}\nMessage link: [limk]({message_link})"
     await draken.send_message(-1001226512514, text)
     await mikey.message.reply_text("Roger! Request sent, Now wait like a good citizen.")
     return
