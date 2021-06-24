@@ -2,7 +2,7 @@ import logging
 import os 
 from telethon import TelegramClient, events, Button
 from telethon.sessions import StringSession
-
+from telethon import errors
 print("Starting....")
 
 draken_token = os.environ.get('BOT_TOKEN')
