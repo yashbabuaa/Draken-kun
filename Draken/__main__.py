@@ -35,7 +35,7 @@ async def request(mikey):
   keybo = []
   async for message in takemichi.iter_messages(chat, search=query):
     try:
-      title = message.text[2:30]
+      title = f"{message.text[2:30]}..."
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = title, url = link)])
