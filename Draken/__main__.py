@@ -51,7 +51,7 @@ async def request(mikey):
   m = await mikey.message.reply("Found Some Results!", buttons = [[Button.url(text = "Check Pm!", url = "http://t.me/DRAKENROBOT")]])
   try:
     await draken.send_message(mikey.sender_id, "Found some matches for you!", buttons = keybo)
-  except errors.UserIsBlockedError:
+  except errors.PeerIdInvalidError:
     await m.delete()
     await mikey.reply("I haven't met you yet please start me and request again!", button = [[Button.url(text="Start", url = "https://t.me/DRAKENROBOT")]])
   
