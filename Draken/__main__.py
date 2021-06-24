@@ -35,7 +35,7 @@ async def request(mikey):
   keybo = []
   async for message in takemichi.iter_messages(chat, search=query):
     try:
-      title = message.text[2:40]
+      title = message.text[2:30]
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = title, url = link)])
@@ -43,16 +43,17 @@ async def request(mikey):
       pass
   if keybo == []:
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
-    message_link = f"https://t.me/c/1364238597/{mikey.message.id}"
+    message_link = f"https://t.me/c/1280998345/{mikey.message.id}"
     text = f"Request: {query}\nRequested by: {req_user}\nMessage link: [limk]({message_link})"
-    await draken.send_message(-1001226512514, text)
+    await draken.send_message(-1001227278561, text)
     await mikey.message.reply_text("Roger! Request sent, Now wait like a good citizen.")
     return
-  m = await mikey.message.reply("Found Some Results!", buttons = [[Button.url(text = "Check Pm!", url = "http://t.me/drakenROdraken")]])
+  m = await mikey.message.reply("Found Some Results!", buttons = [[Button.url(text = "Check Pm!", url = "http://t.me/DRAKENROBOT")]])
   try:
     await draken.send_message(mikey.sender_id, "Found some matches for you!", buttons = keybo)
   except errors.UserIsBlockedError:
-    await m.edit("I haven't met you yet please start me and request again!", button = [[Button.url(text="Start", url = "https://t.me/drakenROdraken")]])
+    await m.delete()
+    await mikey.reply("I haven't met you yet please start me and request again!", button = [[Button.url(text="Start", url = "https://t.me/DRAKENROBOT")]])
   
     
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@drakenROdraken')) 
