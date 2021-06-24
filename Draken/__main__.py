@@ -66,7 +66,7 @@ async def start(mikey):
 
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
-  await mikey.edit("Request Completed!!!")
+  await mikey.delete()
 
 print('Im online!!!')
 
