@@ -3,10 +3,13 @@ import os
 from telethon import TelegramClient, events, Button
 
 draken_token = os.environ.get('BOT_TOKEN')
-api_id = os.environ.get('API_ID')
+api_id = int(os.environ.get('API_ID'))
 api_hash = os.environ.get('API_HASH')
+string = os.environ.get('STRING_SESSION')
 
 draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
+
+takemichi = TelegramClient(StringSession(string), api_id, api_hash)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
 
@@ -22,7 +25,7 @@ async def request(mikey):
     await mikey.message.reply("Request something bakayaro!")
     return
   keybo = []
-  async for message in draken.iter_message(chat):
+  async for message in takemichi.iter_message(chat):
     title = message.text[:20]
     msg_id = message.id 
     link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
