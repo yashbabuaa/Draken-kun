@@ -56,8 +56,7 @@ async def start(mikey):
 
 print('Im online!!!')
 
+takemichi.start()
 draken.start()
 draken.run_until_disconnected()
-
-takemichi.start()
 takemichi.run_until_disconnected()
