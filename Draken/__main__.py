@@ -19,7 +19,7 @@ logger = logging.getLogger("__name__")
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
 async def request(mikey):
   query = mikey.message.text.split(" ", 1)
-  chat = -1001487075546
+  chat = -1001227278561
   try:
     query = query[1]
   except IndexError:
