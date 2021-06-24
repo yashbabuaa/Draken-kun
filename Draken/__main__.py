@@ -31,7 +31,7 @@ async def request(mikey):
     await mikey.message.reply("Request something bakayaro!")
     return
   keybo = []
-  async for message in takemichi.iter_messages(chat):
+  async for message in takemichi.iter_messages(chat, search=query):
     try:
       title = message.text[:20]
       msg_id = message.id 
