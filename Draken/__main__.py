@@ -58,9 +58,11 @@ async def request(mikey):
     
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
-  await mikey.message.reply('Ahh you can request now @SeriesArchiveDiscussion, Im a draken specifically made just to handle request, so go and request if you want something!!!', buttons = [[Button.url(text = "SeriesArchiveDiscussion", url = "https://t.me/SeriesArchiveDiscussion")], [Button.url(text = "Creator", url = "https://t.me/DontKnowWhoRU")]])
   if mikey.is_private:
+    await mikey.message.reply('Ahh you can request now @SeriesArchiveDiscussion, Im a draken specifically made just to handle request, so go and request if you want something!!!', buttons = [[Button.url(text = "SeriesArchiveDiscussion", url = "https://t.me/SeriesArchiveDiscussion")], [Button.url(text = "Creator", url = "https://t.me/DontKnowWhoRU")]])
     await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
+  else:
+    await mikey.reply("Im up and working!")
 
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
