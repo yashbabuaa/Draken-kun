@@ -1,6 +1,7 @@
 import logging 
 import os 
 from telethon import TelegramClient, events, Button
+from telethon.sessions import StringSession
 
 draken_token = os.environ.get('BOT_TOKEN')
 api_id = int(os.environ.get('API_ID'))
