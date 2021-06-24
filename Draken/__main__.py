@@ -33,14 +33,14 @@ async def request(mikey):
   keybo = []
   async for message in takemichi.iter_messages(chat, search=query):
     try:
-      title = message.text[:20]
+      title = message.text[2:40]
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = title, url = link)])
     except TypeError:
       pass
   if keybo == []:
-    req_user = f"[{mikey.sender_name}](tg://user?id={mikey.sender_id})" 
+    req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/1364238597/{mikey.message.id}"
     text = f"Request: {query}\nRequested by: {req_user}\nMessage link: [limk]({link})"
     await draken.send_message(-1001226512514, text)
