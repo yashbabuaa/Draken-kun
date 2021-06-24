@@ -54,7 +54,7 @@ print('Starting.......')
 print('Im online!!!')
 
 draken.start()
-#draken.run_until_disconnected()
+draken.run_until_disconnected()
 
 takemichi.start()
 #takemichi.run_until_disconnected()
