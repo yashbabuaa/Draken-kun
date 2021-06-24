@@ -26,7 +26,7 @@ async def request(mikey):
     await mikey.message.reply("Request something bakayaro!")
     return
   keybo = []
-  async for message in takemichi.iter_messages(chat):
+  async for message in draken.iter_messages(chat):
     title = message.text[:20]
     msg_id = message.id 
     link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
