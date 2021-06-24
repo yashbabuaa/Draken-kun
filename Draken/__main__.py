@@ -2,7 +2,7 @@ import logging
 import os 
 from telethon import TelegramClient, events, Button
 from telethon.sessions import StringSession
-from telethon import errors
+from telethon.errors import errors
 print("Starting....")
 
 draken_token = os.environ.get('BOT_TOKEN')
@@ -49,7 +49,7 @@ async def request(mikey):
   m = await mikey.message.reply("Found Some Results!", buttons = [[Button.url(text = "Check Pm!", url = "http://t.me/drakenROdraken")]])
   try:
     await draken.send_message(message.from_user.id, text = "Found some matches for you!", buttons = [keybo])
-  except UserIsBlockedError:
+  except Badrequest:
     await m.edit("I haven't met you yet please start me and request again!", button = [[Button.url(text="Start", url = "https://t.me/drakenROdraken")]])
   
     
