@@ -32,7 +32,7 @@ async def request(mikey):
     mikey = await mikey.get_reply_message()
     query = mikey.message
   else:
-    query = mikey.message.text(" ", 1)
+    query = mikey.message.text.split(" ", 1)
     try:
       query = query[1]
     except IndexError:
