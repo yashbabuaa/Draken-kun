@@ -12,6 +12,7 @@ api_hash = os.environ.get('API_HASH')
 string = os.environ.get('STRING_SESSION')
 bot_name = os.environ.get('BOT_NAME', 'Draken')
 
+
 draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
 takemichi = TelegramClient(StringSession(string), api_id, api_hash)
@@ -56,7 +57,7 @@ async def request(mikey):
   count2 = 0
   if keybo == []:
     async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-      await takemichi.send_message(-1001364238597, file = message.document)
+      await takemichi.send_message(mikey.chat_id, file = message.document)
       count2 += 1 
     if not count2 == 0:
       await mikey.reply("👆")
