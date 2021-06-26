@@ -65,7 +65,7 @@ async def request(mikey):
       await mikey.message.reply("Roger! Request sent, Now wait like a good citizen.")
       return
   else:
-    m = await mikey.message.reply(text, file = open(photo, 'rb') buttons = keybo)
+    m = await mikey.message.reply(text, file = open(photo, 'rb'), buttons = keybo)
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
