@@ -27,7 +27,7 @@ logger = logging.getLogger("__name__")
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
 async def request(mikey):
   chat = -1001487075546
-  chat2 = -1001521554994
+  chat2 = -1001550963689
   if mikey.is_private:
     return 
   query = mikey.message.text.split(" ", 1)
