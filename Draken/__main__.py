@@ -28,7 +28,7 @@ async def request(mikey):
     return 
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
-  query = mikey.message.text.split(" ", 1)
+  query = mikey.message.split(" ", 1)
   chat = -1001487075546
   chat2 = -1001364238597
   try:
