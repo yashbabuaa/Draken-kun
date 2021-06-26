@@ -37,7 +37,7 @@ async def request(mikey):
   except IndexError:
     await mikey.reply("Request something bakayaro!")
     return
-  if not mikey.chat_id == 1364238597:
+  if not mikey.chat_id == -1001364238597:
     req_log = "False"
   else:
     req_log = "True"
