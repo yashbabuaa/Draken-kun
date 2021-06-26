@@ -76,7 +76,7 @@ async def request(mikey):
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
   if mikey.is_private:
-    await mikey.message.reply(f'Im {bot_name} specifically made just to handle request, so go and request if you want something!!!', buttons = [[Button.url(text = "Creator", url = "https://t.me/DontKnowWhoRU")]])
+    await mikey.message.reply(f'Im {bot_name} a bot, i was made to handle requsest!")
     await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
