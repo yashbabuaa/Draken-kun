@@ -35,7 +35,7 @@ async def request(mikey):
   except IndexError:
     await mikey.reply("Request something bakayaro!")
     return
-  if not mikey.chat_id = 1364238597:
+  if not mikey.chat_id == 1364238597:
     req_log = "False"
   else:
     req_log = "True"
@@ -68,7 +68,7 @@ async def request(mikey):
         await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
         return
       else:
-        pass
+        await mikey.reply("Gotcha, Now wait like a good citizen!!")
   else:
     m = await mikey.reply(text, buttons = keybo)
   
