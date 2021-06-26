@@ -56,7 +56,7 @@ async def request(mikey):
       await draken.send_message(chat2, file = message.document)
       count2 += 1 
     if not count2 == 0:
-      await mikey.reply(👆)
+      await mikey.reply("👆")
   elif count2 == 0:
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/1364238597/{mikey.message.id}"
