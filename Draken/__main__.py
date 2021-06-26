@@ -43,7 +43,7 @@ async def request(mikey):
       break
     try:
       title = f"{message.text[2:30]}..."
-      photo = message.photo.mime_type
+      photo = message.photo
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = title, url = link)])
