@@ -35,20 +35,21 @@ async def request(mikey):
   except IndexError:
     await mikey.reply("Request something bakayaro!")
     return
+  if not mikey.chat_id = 1364238597:
+    req_log = "False"
+  else:
+    req_log = "True"
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
   keybo = []
   count = 0
   text = ''
   async for message in takemichi.iter_messages(chat, search=query):
-    if count == 1:
-      break
     try:
-      text = f"{message.text[2:35]}..."
+      text = f"{message.text[2:20]}..."
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = text, url = link)])
-      count += 1
     except TypeError:
       pass
   count2 = 0
@@ -59,12 +60,15 @@ async def request(mikey):
     if not count2 == 0:
       await mikey.reply("👆")
     if count2 == 0:
-      req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
-      message_link = f"https://t.me/c/1364238597/{mikey.id}"
-      text = f"Request: {query}\nRequested by: {req_user}\n"
-      await draken.send_message(-1001226512514, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
-      await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
-      return
+      if req_log = "True":
+        req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
+        message_link = f"https://t.me/c/1364238597/{mikey.id}"
+        text = f"Request: {query}\nRequested by: {req_user}\n"
+        await draken.send_message(-1001226512514, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
+        await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
+        return
+      else:
+        pass
   else:
     m = await mikey.reply(text, buttons = keybo)
   
