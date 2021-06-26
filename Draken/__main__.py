@@ -34,7 +34,7 @@ async def request(mikey):
   try:
     query = query[1]
   except IndexError:
-    await mikey.message.reply("Request something bakayaro!")
+    await mikey.reply("Request something bakayaro!")
     return
   keybo = []
   count = 0
@@ -65,7 +65,7 @@ async def request(mikey):
       await mikey.message.reply("Roger! Request sent, Now wait like a good citizen.")
       return
   else:
-    m = await mikey.message.reply(text, buttons = keybo)
+    m = await mikey.reply(text, buttons = keybo)
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
