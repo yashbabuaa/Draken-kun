@@ -43,7 +43,7 @@ async def request(mikey):
     if count == 1:
       break
     try:
-      text = f"{message.text[2:30]}..."
+      text = f"{message.text[2:35]}..."
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = text, url = link)])
