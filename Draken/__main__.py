@@ -55,7 +55,7 @@ async def request(mikey):
     async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
       await draken.send_message(chat2, file = message.document)
       count2 += 1 
-    if not count2 = 0:
+    if not count2 == 0:
       await mikey.reply(👆)
   elif count2 == 0:
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
