@@ -24,18 +24,21 @@ logger = logging.getLogger("__name__")
 
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
 async def request(mikey):
+  chat = -1001487075546
+  chat2 = -1001364238597
   if mikey.is_private:
     return 
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
-  query = mikey.message.split(" ", 1)
-  chat = -1001487075546
-  chat2 = -1001364238597
-  try:
-    query = query[1]
-  except IndexError:
-    await mikey.reply("Request something bakayaro!")
-    return
+  if mikey.message is str:
+    query = mikey.message
+  else:
+    query = mikey.message.text(" ", 1)
+    try:
+      query = query[1]
+    except IndexError:
+      await mikey.reply("Request something bakayaro!")
+      return
   keybo = []
   count = 0
   text = ''
