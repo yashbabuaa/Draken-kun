@@ -60,7 +60,7 @@ async def request(mikey):
     if not count2 == 0:
       await mikey.reply("👆")
     if count2 == 0:
-      if req_log = "True":
+      if req_log == "True":
         req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
         message_link = f"https://t.me/c/1364238597/{mikey.id}"
         text = f"Request: {query}\nRequested by: {req_user}\n"
