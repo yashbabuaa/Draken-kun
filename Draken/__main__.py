@@ -63,7 +63,7 @@ async def request(mikey):
       message_link = f"https://t.me/c/1364238597/{mikey.id}"
       text = f"Request: {query}\nRequested by: {req_user}\n"
       await draken.send_message(-1001226512514, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
-      await mikey.message.reply("Roger! Request sent, Now wait like a good citizen.")
+      await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
       return
   else:
     m = await mikey.reply(text, buttons = keybo)
