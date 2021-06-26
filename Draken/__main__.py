@@ -26,7 +26,7 @@ logger = logging.getLogger("__name__")
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
 async def request(mikey):
   chat = -1001487075546
-  chat2 = -1001364238597
+  chat2 = -1001521554994
   if mikey.is_private:
     return 
   query = mikey.message.text.split(" ", 1)
@@ -54,7 +54,7 @@ async def request(mikey):
   count2 = 0
   if keybo == []:
     async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-      await takemichi.send_message(chat2, file = message.document)
+      await takemichi.send_message(-1001364238597, file = message.document)
       count2 += 1 
     if not count2 == 0:
       await mikey.reply("👆")
