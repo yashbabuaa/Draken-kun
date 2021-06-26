@@ -43,7 +43,7 @@ async def request(mikey):
       break
     try:
       title = f"{message.text[2:30]}..."
-      photo = draken.download_file(message.photo)
+      photo = await draken.download_file(message.photo)
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = title, url = link)])
@@ -53,7 +53,7 @@ async def request(mikey):
   count2 = 0
   if keybo == []:
     async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-      await draken.send_message(chat2, file = message.document)
+      await takemichi.send_message(chat2, file = message.document)
       count2 += 1 
     if not count2 == 0:
       await mikey.reply("👆")
