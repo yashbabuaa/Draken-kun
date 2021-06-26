@@ -41,10 +41,10 @@ async def request(mikey):
     if count == 1:
       break
     try:
-      title = f"{message.text[2:30]}..."
+      text = f"{message.text[2:30]}..."
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
-      keybo.append([Button.url(text = title, url = link)])
+      keybo.append([Button.url(text = text, url = link)])
       count += 1
     except TypeError:
       pass
