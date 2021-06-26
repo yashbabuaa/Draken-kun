@@ -26,8 +26,8 @@ logger = logging.getLogger("__name__")
 async def request(mikey):
   if mikey.is_private:
     return 
-  if mikey.reply_to_message:
-    mikey = mikey.reply_to_message
+  if mikey.reply_to_msg_id:
+    mikey = await mikey.get_reply_message()
   query = mikey.message.text.split(" ", 1)
   chat = -1001487075546
   chat2 = -1001364238597
