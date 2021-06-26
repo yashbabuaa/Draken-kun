@@ -22,6 +22,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger("__name__")
 
+@draken.on(events.NewMessage(incoming=True, pattern=r'^\!search(.*)'))
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
 async def request(mikey):
   chat = -1001487075546
