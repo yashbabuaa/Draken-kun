@@ -34,7 +34,7 @@ async def request(mikey):
   except IndexError:
     await mikey.reply("Request something bakayaro!")
     return
-  if message.reply_to_msg_id:
+  if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
   keybo = []
   count = 0
