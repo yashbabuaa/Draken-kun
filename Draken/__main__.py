@@ -30,7 +30,6 @@ async def request(mikey):
     return 
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
-  if mikey.message is str:
     query = mikey.message
   else:
     query = mikey.message.text(" ", 1)
