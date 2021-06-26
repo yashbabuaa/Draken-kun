@@ -3,6 +3,7 @@ import os
 from telethon import TelegramClient, events, Button
 from telethon.sessions import StringSession
 from telethon import errors
+from telethon.tl.types import InputMessagesFilterDocument
 print("Starting....")
 
 draken_token = os.environ.get('BOT_TOKEN')
@@ -27,35 +28,45 @@ async def request(mikey):
     return 
   query = mikey.message.text.split(" ", 1)
   chat = -1001487075546
+  chat2 = -1001364238597
   try:
     query = query[1]
   except IndexError:
     await mikey.message.reply("Request something bakayaro!")
     return
   keybo = []
+  count = 0
+  photo = ''
+  text = ''
   async for message in takemichi.iter_messages(chat, search=query):
+    if count == 1:
+      break
     try:
       title = f"{message.text[2:30]}..."
+      photo = message.photo.id
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = title, url = link)])
+      count += 1
     except TypeError:
       pass
+  count2 = 0
   if keybo == []:
+    async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
+      await draken.send_message(chat2, file = message.document)
+      count2 += 1 
+    if not count2 = 0:
+      await mikey.reply(👆)
+  elif count2 == 0:
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/1364238597/{mikey.message.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
     await draken.send_message(-1001226512514, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
     await mikey.message.reply("Roger! Request sent, Now wait like a good citizen.")
     return
-  m = await mikey.message.reply("Found Some Results!", buttons = [[Button.url(text = "Check Pm!", url = "http://t.me/DRAKENROBOT")]])
-  try:
-    await draken.send_message(mikey.sender_id, "Found some matches for you!, if the thing you are finding isnt here, please request with more refined words", buttons = keybo)
-  except errors.PeerIdInvalidError:
-    await m.delete()
-    await mikey.reply("I haven't met you yet please start me and request again!", buttons = [[Button.url(text="Start", url = "https://t.me/DRAKENROBOT")]])
+  else:
+    m = await mikey.message.reply(text, photo = photo, buttons = keybo)
   
-    
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
   if mikey.is_private:
