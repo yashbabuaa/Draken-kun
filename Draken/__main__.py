@@ -36,14 +36,12 @@ async def request(mikey):
     return
   keybo = []
   count = 0
-  photo = ''
   text = ''
   async for message in takemichi.iter_messages(chat, search=query):
     if count == 1:
       break
     try:
       title = f"{message.text[2:30]}..."
-      photo = await draken.download_file(message.photo)
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = title, url = link)])
@@ -65,7 +63,7 @@ async def request(mikey):
       await mikey.message.reply("Roger! Request sent, Now wait like a good citizen.")
       return
   else:
-    m = await mikey.message.reply(text, file = open(photo, 'rb'), buttons = keybo)
+    m = await mikey.message.reply(text, buttons = keybo)
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
