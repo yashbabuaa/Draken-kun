@@ -10,6 +10,7 @@ draken_token = os.environ.get('BOT_TOKEN')
 api_id = int(os.environ.get('API_ID'))
 api_hash = os.environ.get('API_HASH')
 string = os.environ.get('STRING_SESSION')
+bot_name = os.environ.get('BOT_NAME', 'Draken')
 
 draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
@@ -75,7 +76,7 @@ async def request(mikey):
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
   if mikey.is_private:
-    await mikey.message.reply('Im draken specifically made just to handle request, so go and request if you want something!!!', buttons = [[Button.url(text = "Creator", url = "https://t.me/DontKnowWhoRU")]])
+    await mikey.message.reply(f'Im {bot_name} specifically made just to handle request, so go and request if you want something!!!', buttons = [[Button.url(text = "Creator", url = "https://t.me/DontKnowWhoRU")]])
     await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
