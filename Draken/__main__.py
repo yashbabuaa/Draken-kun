@@ -39,6 +39,8 @@ async def request(mikey):
     return
   if not mikey.chat_id == -1001364238597:
     req_log = "False"
+  elif mikey.message.text.startswith("!search"):
+    req_log = "False"
   else:
     req_log = "True"
   if mikey.reply_to_msg_id:
