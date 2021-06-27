@@ -29,7 +29,7 @@ logger = logging.getLogger("__name__")
 async def request(mikey):
   chat = -1001487075546
   chat2 = -1001550963689
-  if mikey.message.startswith("#request")
+  if mikey.message.startswith("#request"):
     if mikey.is_private:
       return 
   query = mikey.message.text.split(" ", 1)
