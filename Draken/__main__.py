@@ -98,9 +98,19 @@ def de(update: Update, context: CallbackContext):
   query = update.callback_query 
   query.message.delete()
 
+START_HANDLER = Commandhandler("start", start, run_async=True)
+REQ_HANDLER = MessageHandler(Filters.regex(r'^#request(.*)'), request, run_async=True)
+SEARCH_HANDLER = MessageHandler(Filters.regex(r'^!search(.*)'), request, run_async=True)
+DEL_CALL = CallbackQueryHandler(de, pattern="recomp", run_async)
+
+dispatcher.add_handler(START_HANDLER)
+dispatcher.add_handler(REQ_HANDLER)
+dispatcher.add_handler(SEARCH_HANDLER)
+dispatcher.add_handler(DEL_CALL)
+
+
 print('Im online!!!')
 
 takemichi.start()
 draken.start_polling()
-draken.run_until_disconnected()
 takemichi.run_until_disconnected()
