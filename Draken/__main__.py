@@ -26,7 +26,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger("__name__")
 
-def request(update: Update, context: CallbackContext):
+async def request(update: Update, context: CallbackContext):
   chat = -1001487075546
   chat2 = -1001550963689
   bot = context.bot
