@@ -84,13 +84,13 @@ async def request(update: Update, context: CallbackContext):
   else:
     m = mikey.reply(text, reply_markup = InlineKeyboardMarkup([keybo]))
   
-def start(update: Update, context: CallbackContext):
+async def start(update: Update, context: CallbackContext):
   chat = update.effective_chat
   msg = update.effective_message
   bot = context.bot
   if chat.type == "private":
     msg.reply_text(f"Im {bot_name} a bot made by @DontKnowWhoRU, i was made to handle requsest!")
-    bot.send_message(-1001569337079, f"#START\n[{msg.from_user.first_name}](tg://user?id={msg.from_user.message_id}) started the bot!")
+    bot.send_message(-1001569337079, f"#START\n[{msg.from_user.first_name}](tg://user?id={msg.from_user.id}) started the bot!")
   else:
     msg.reply_text("Im up and working!")
 
