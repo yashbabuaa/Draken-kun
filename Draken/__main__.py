@@ -27,7 +27,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger("__name__")
 
-loop = asyncio.get_event_loop()
+loop = asyncio.new_event_loop()
 
 async def search(query):
   chat = -1001487075546
@@ -134,4 +134,3 @@ print('Im online!!!')
 
 takemichi.start()
 draken.start_polling()
-takemichi.run_until_disconnected()
