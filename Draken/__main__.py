@@ -98,7 +98,7 @@ def de(update: Update, context: CallbackContext):
   query = update.callback_query 
   query.message.delete()
 
-START_HANDLER = Commandhandler("start", start, run_async=True)
+START_HANDLER = CommandHandler("start", start, run_async=True)
 REQ_HANDLER = MessageHandler(Filters.regex(r'^#request(.*)'), request, run_async=True)
 SEARCH_HANDLER = MessageHandler(Filters.regex(r'^!search(.*)'), request, run_async=True)
 DEL_CALL = CallbackQueryHandler(de, pattern="recomp", run_async=True)
