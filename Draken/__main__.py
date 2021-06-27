@@ -15,8 +15,6 @@ api_hash = os.environ.get('API_HASH')
 string = os.environ.get('STRING_SESSION')
 bot_name = os.environ.get('BOT_NAME', 'Draken')
 
-loop = asyncio.get_event_loop()
-
 draken = Updater(draken_token)
 dispatcher = draken.dispatcher
 takemichi = TelegramClient(StringSession(string), api_id, api_hash)
@@ -28,7 +26,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger("__name__")
 
-async def request(update: Update, context: CallbackContext):
+def request(update: Update, context: CallbackContext):
   chat = -1001487075546
   chat2 = -1001550963689
   bot = context.bot
@@ -59,7 +57,7 @@ async def request(update: Update, context: CallbackContext):
   keybo = []
   count = 0
   text = ''
-  async for message in takemichi.iter_messages(chat, search=query):
+  for message in takemichi.iter_messages(chat, search=query):
     try:
       text = f"{message.text[2:20]}..."
       msg_id = message.id 
@@ -100,7 +98,6 @@ def de(update: Update, context: CallbackContext):
   query = update.callback_query 
   query.message.delete()
 
-loop.run_until_complete(request())
 
 START_HANDLER = CommandHandler("start", start, run_async=True)
 REQ_HANDLER = MessageHandler(Filters.regex(r'^#request(.*)'), request, run_async=True)
