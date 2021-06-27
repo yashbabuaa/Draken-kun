@@ -70,7 +70,7 @@ def request(update: Update, context: CallbackContext):
     for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
       bot.send_document(chat.id, document = message.document)
     if not count2 == 0:
-      await mikey.reply_text("👆")
+      mikey.reply_text("👆")
     if count2 == 0:
       if req_log == "True":
         req_user = f"[{mikey.from_user.first_name}](tg://user?id={mikey.from_user.id})" 
