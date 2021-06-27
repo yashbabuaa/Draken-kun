@@ -67,7 +67,7 @@ def request(update: Update, context: CallbackContext):
       pass
   count2 = 0
   if keybo == []:
-    async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
+    for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
       bot.send_document(chat.id, document = message.document)
     if not count2 == 0:
       await mikey.reply_text("👆")
