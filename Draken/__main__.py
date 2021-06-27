@@ -6,6 +6,7 @@ from telethon import errors
 from telethon.tl.types import InputMessagesFilterDocument
 from telegram import * 
 from telegram.ext import *
+from telethon.utils import pack_bot_file_id
 import asyncio
 print("Starting....")
 
@@ -26,9 +27,36 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger("__name__")
 
-def request(update: Update, context: CallbackContext):
+loop = asyncio.get_event_loop()
+
+async def search(query):
   chat = -1001487075546
+  keybo = []
+  async for message in takemichi.iter_messages(chat, search=query):
+    try:
+      text = f"{message.text[2:20]}..."
+      msg_id = message.id 
+      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
+      keybo.append([InlineKeyboardButton(text=f"{text}", url = link)])
+    except TypeError:
+      pass
+    if len(keybo) >= 2:
+      return keybo 
+    else:
+      return False
+    
+async def searchfiles(query):
   chat2 = -1001550963689
+  doc = []
+  async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
+      doc.append(pack_bot_file_id(message.document))
+  if len(doc) >= 1:
+    return doc
+  else:
+    return False
+    
+    
+def request(update: Update, context: CallbackContext):
   bot = context.bot
   chat = update.effective_chat 
   user = update.effective_user 
@@ -54,24 +82,12 @@ def request(update: Update, context: CallbackContext):
     mikey = message.reply_to_message
   else:
     mikey = message
-  keybo = []
   count = 0
   text = ''
-  for message in takemichi.iter_messages(chat, search=query):
-    try:
-      text = f"{message.text[2:20]}..."
-      msg_id = message.id 
-      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
-      keybo.append([InlineKeyboardButton(text=f"{text}", url = link)])
-    except TypeError:
-      pass
-  count2 = 0
-  if keybo == []:
-    for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-      bot.send_document(chat.id, document = message.document)
-    if not count2 == 0:
-      mikey.reply_text("👆")
-    if count2 == 0:
+  hek = loop.run_until_complete(search(query))
+  if hek == False:
+    kek = loop.run_until_complete(searchfiles(query))
+    if kek == False:
       if req_log == "True":
         req_user = f"[{mikey.from_user.first_name}](tg://user?id={mikey.from_user.id})" 
         message_link = f"https://t.me/c/1364238597/{mikey.message_id}"
@@ -79,10 +95,14 @@ def request(update: Update, context: CallbackContext):
         bot.send_message(-1001226512514, text, buttons = [[InlineKeyboardButton(text = "Message", url = message_link)], [InlineKeyboardButton(text="Request Complete", callback_data = "recomp")]])
         mikey.reply("Roger! Request sent, Now wait like a good citizen.")
         return
-      else:
-        mikey.reply("Gotcha, Now wait like a good citizen!!")
+    else:
+      count = 0
+      for i in kek:
+        bot.send_document(chat.id, document=i)
+      if not count == 0:
+        mikey.reply_text("👆")
   else:
-    m = mikey.reply(text, reply_markup = InlineKeyboardMarkup([keybo]))
+    mikey.reply_text("Found some from Series Archive.....", reply_markup=InlineKeyboardMarkup(hek))
   
 def start(update: Update, context: CallbackContext):
   chat = update.effective_chat
