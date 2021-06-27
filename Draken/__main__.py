@@ -6,6 +6,7 @@ from telethon import errors
 from telethon.tl.types import InputMessagesFilterDocument
 from telegram import * 
 from telegram.ext import *
+import asyncio
 print("Starting....")
 
 draken_token = os.environ.get('BOT_TOKEN')
@@ -14,6 +15,7 @@ api_hash = os.environ.get('API_HASH')
 string = os.environ.get('STRING_SESSION')
 bot_name = os.environ.get('BOT_NAME', 'Draken')
 
+loop = asyncio.get_event_loop()
 
 draken = Updater(draken_token)
 dispatcher = draken.dispatcher
@@ -84,7 +86,7 @@ async def request(update: Update, context: CallbackContext):
   else:
     m = mikey.reply(text, reply_markup = InlineKeyboardMarkup([keybo]))
   
-async def start(update: Update, context: CallbackContext):
+def start(update: Update, context: CallbackContext):
   chat = update.effective_chat
   msg = update.effective_message
   bot = context.bot
@@ -97,6 +99,8 @@ async def start(update: Update, context: CallbackContext):
 def de(update: Update, context: CallbackContext):
   query = update.callback_query 
   query.message.delete()
+
+loop.run_until_complete(request())
 
 START_HANDLER = CommandHandler("start", start, run_async=True)
 REQ_HANDLER = MessageHandler(Filters.regex(r'^#request(.*)'), request, run_async=True)
