@@ -42,7 +42,7 @@ def request(update: Update, context: CallbackContext):
   try:
     query = query[1]
   except IndexError:
-    await mikey.reply("Request something bakayaro!")
+    message.reply_text("Request something bakayaro!")
     return
   if not chat.id == -1001364238597:
     req_log = "False"
