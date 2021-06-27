@@ -90,7 +90,7 @@ def start(update: Update, context: CallbackContext):
   bot = context.bot
   if chat.type == "private":
     msg.reply_text(f"Im {bot_name} a bot made by @DontKnowWhoRU, i was made to handle requsest!")
-    bot.send_message(-1001569337079, f"#START\n[{message.from_user.first_name}](tg://user?id={message.from_user.message_id}) started the bot!")
+    bot.send_message(-1001569337079, f"#START\n[{msg.from_user.first_name}](tg://user?id={msg.from_user.message_id}) started the bot!")
   else:
     msg.reply_text("Im up and working!")
 
