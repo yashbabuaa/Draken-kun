@@ -59,7 +59,8 @@ async def request(mikey):
   count2 = 0
   if keybo == []:
     async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-      await takemichi.send_message(mikey.chat_id, file = message.document)
+      hek = await draken.get_messages(chat2, ids = message.id)
+      await draken.send_message(mikey.chat_id, file = hek.media)
       count2 += 1 
     if not count2 == 0:
       await mikey.reply("👆")
