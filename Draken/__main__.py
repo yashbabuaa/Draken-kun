@@ -101,7 +101,7 @@ def de(update: Update, context: CallbackContext):
 START_HANDLER = Commandhandler("start", start, run_async=True)
 REQ_HANDLER = MessageHandler(Filters.regex(r'^#request(.*)'), request, run_async=True)
 SEARCH_HANDLER = MessageHandler(Filters.regex(r'^!search(.*)'), request, run_async=True)
-DEL_CALL = CallbackQueryHandler(de, pattern="recomp", run_async)
+DEL_CALL = CallbackQueryHandler(de, pattern="recomp", run_async=True)
 
 dispatcher.add_handler(START_HANDLER)
 dispatcher.add_handler(REQ_HANDLER)
