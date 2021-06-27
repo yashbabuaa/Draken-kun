@@ -30,7 +30,7 @@ def request(update: Update, context: CallbackContext):
   chat = -1001487075546
   chat2 = -1001550963689
   bot = context.bot
-  chat = upsate.effective_chat 
+  chat = update.effective_chat 
   user = update.effective_user 
   message = update.effective_message
   if chat.type == "private":
