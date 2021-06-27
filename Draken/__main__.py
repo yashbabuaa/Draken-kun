@@ -50,7 +50,7 @@ async def request(mikey):
   text = ''
   async for message in takemichi.iter_messages(chat, search=query):
     try:
-      text = f"{message.text[2:20]}..."
+      text = f"{message.text[2:30]}..."
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = text, url = link)])
@@ -74,7 +74,7 @@ async def request(mikey):
       else:
         await mikey.reply("Gotcha, Now wait like a good citizen!!")
   else:
-    m = await mikey.reply(text, buttons = keybo)
+    m = await mikey.reply("Found some results....", buttons = keybo)
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
