@@ -24,6 +24,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger("__name__")
 
+@draken.on(events.NewMessage(incoming=True, pattern=r'^\/files(.*)'))
 @draken.on(events.NewMessage(incoming=True, pattern=r'^\/search(.*)'))
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
 async def request(mikey):
@@ -38,6 +39,10 @@ async def request(mikey):
   except IndexError:
     await mikey.reply("Request something bakayaro!")
     return
+  if mikey.message.text.startswith("/files"):
+    only_files = "On"
+  else:
+    only_files = "Off"
   if not mikey.chat_id == -1001364238597:
     req_log = "False"
   elif mikey.message.text.startswith("/search"):
@@ -49,7 +54,8 @@ async def request(mikey):
   keybo = []
   count = 0
   text = ''
-  async for message in takemichi.iter_messages(chat, search=query):
+  if only_files == "On":
+    async for message in takemichi.iter_messages(chat, search=query):
     try:
       text = f"{message.text[2:30]}..."
       msg_id = message.id 
@@ -57,6 +63,8 @@ async def request(mikey):
       keybo.append([Button.url(text = text, url = link)])
     except TypeError:
       pass
+  else:
+    pass
   count2 = 0
   if keybo == []:
     async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
