@@ -64,10 +64,10 @@ async def request(mikey):
   else:
     if only_files == "Off":
       async for message in takemichi.iter_messages(chat, search=query):
-      text = f"{message.text[2:30]}..."
-      msg_id = message.id 
-      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
-      keybo.append([Button.url(text = text, url = link)])
+        text = f"{message.text[2:30]}..."
+        msg_id = message.id 
+        link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
+        keybo.append([Button.url(text = text, url = link)])
     else:
       pass
     if keybo == []:
