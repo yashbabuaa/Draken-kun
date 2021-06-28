@@ -56,13 +56,10 @@ async def request(mikey):
   text = ''
   if only_files == "On":
     async for message in takemichi.iter_messages(chat, search=query):
-    try:
       text = f"{message.text[2:30]}..."
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       keybo.append([Button.url(text = text, url = link)])
-    except TypeError:
-      pass
   else:
     pass
   count2 = 0
