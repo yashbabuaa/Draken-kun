@@ -41,7 +41,7 @@ async def request(mikey):
   if not mikey.chat_id == -1001364238597:
     req_log = "False"
   elif mikey.message.text.startswith("!search"):
-    req_log = "False"
+    req_log = "Trufal"
   else:
     req_log = "True"
   if mikey.reply_to_msg_id:
@@ -73,8 +73,10 @@ async def request(mikey):
         await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
         await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
         return
+      elif req_log = "Trufal":
+        await mikey.reply("It isnt in db, will add it soon!!")
       else:
-        await mikey.reply("Couln't find in db.... sorry!!, maybe refine search and search something shorter...")
+        await mikey.reply("Gotcha, now wait like a good citizen...")
   else:
     m = await mikey.reply("Found some results....", buttons = keybo)
   
