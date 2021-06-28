@@ -74,14 +74,14 @@ async def request(mikey):
         await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
         return
       else:
-        await mikey.reply("Gotcha, Now wait like a good citizen!!")
+        await mikey.reply("Couln't find in db.... sorry!!")
   else:
     m = await mikey.reply("Found some results....", buttons = keybo)
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
   if mikey.is_private:
-    await mikey.message.reply(f"Im {bot_name} a bot, i was made to handle requsest!")
+    await mikey.message.reply(f"Im {bot_name} a bot, i was made to search movie files and series files, to search files use !search <what to search>\n\nMade by @DontKnowWhoRU and managed by @TvSeriesArchive")
     await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
