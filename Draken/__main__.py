@@ -74,7 +74,7 @@ async def request(mikey):
         await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
         return
       else:
-        await mikey.reply("Couln't find in db.... sorry!!")
+        await mikey.reply("Couln't find in db.... sorry!!, maybe refine search and search something shorter...")
   else:
     m = await mikey.reply("Found some results....", buttons = keybo)
   
