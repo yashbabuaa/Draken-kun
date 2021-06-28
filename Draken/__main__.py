@@ -73,7 +73,7 @@ async def request(mikey):
         await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
         await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
         return
-      elif req_log = "Trufal":
+      elif req_log == "Trufal":
         await mikey.reply("It isnt in db, will add it soon!!")
       else:
         await mikey.reply("Gotcha, now wait like a good citizen...")
