@@ -54,7 +54,7 @@ async def request(mikey):
   keybo = []
   count = 0
   text = ''
-  if only_files == "On":
+  if only_files == "Off":
     async for message in takemichi.iter_messages(chat, search=query):
       text = f"{message.text[2:30]}..."
       msg_id = message.id 
