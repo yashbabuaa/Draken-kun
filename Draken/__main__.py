@@ -70,7 +70,7 @@ async def request(mikey):
         req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
         message_link = f"https://t.me/c/1364238597/{mikey.id}"
         text = f"Request: {query}\nRequested by: {req_user}\n"
-        await draken.send_message(-1001226512514, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
+        await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
         await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
         return
       else:
