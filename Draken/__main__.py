@@ -83,7 +83,7 @@ async def request(mikey):
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
 async def start(mikey):
   if mikey.is_private:
-    await mikey.message.reply(f"Im {bot_name} a bot, i was made to search movie files and series files, to search files use `/search <query>`\n\nMade by @DontKnowWhoRU2 and managed by @TvSeriesArchive")
+    await mikey.message.reply(f"Im {bot_name} a bot, \n\nMade by @DontKnowWhoRU2 and managed by @TvSeriesArchive")
     await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
