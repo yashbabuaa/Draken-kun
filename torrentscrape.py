@@ -17,7 +17,6 @@ class thirteenX:
       res.append(i.get('link')) #link
       res.append(i.get('size')) # size
       result.append(res)
-    print(result)
     return result
       
   def get_info(link):
