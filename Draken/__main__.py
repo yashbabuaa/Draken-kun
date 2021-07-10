@@ -97,7 +97,7 @@ async def request(mikey):
 @draken.on(events.NewMessage(incoming=True, pattern=r'^(/start(.*)|/start@DRAKENROBOT$)')) 
 async def start(mikey):
   if mikey.is_private:
-    if not mikey.message.text = '/start':
+    if not mikey.message.text == '/start':
       if len(mikey.message.text.split(' ', 1)) == 2:
         pass 
       else:
