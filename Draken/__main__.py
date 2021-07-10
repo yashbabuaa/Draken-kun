@@ -135,17 +135,18 @@ async def torrentsearch(mikey):
   text = ''
   while count <= 4:
     for i in search:
+      print(i)
       count += 1
-      msg_to_send += f"*{count}.{i[0]}\n  Size: {i[3]}*\n\n"
-      r = i[2][30:]
+      msg_to_send += f"*{count}.{i[0]}\n  Size: {i[2]}*\n\n"
+      r = i[1][30:]
       passer = r.replace('/', '_')
       keybo.append(Button.url(text=count, url=f'https://t.me/DrakenKunRoBot?start={passer}'))
   for i in search: 
     count2 += 1
-    r2 = i[2][30:]
+    r2 = i[1][30:]
     passer2 = r2.replace('/', '_')
     link = f'https://t.me/DrakenKunRoBot?start={passer2}'
-    text = f'{count2}.{i[0]}\nSize: {i[3]}\n<a href = "{link}">Click here to get more info</a>\n\n'
+    text = f'{count2}.{i[0]}\nSize: {i[2]}\n<a href = "{link}">Click here to get more info</a>\n\n'
   h = hina.post(title = f'Results for {query}', author = 'Draken', text=text)  
   url = h.get('url')
   if msg_to_send == '':
