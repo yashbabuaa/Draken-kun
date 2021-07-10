@@ -94,14 +94,10 @@ async def request(mikey):
   else:
     m = await mikey.reply("Found some results....", buttons = keybo)
   
-@draken.on(events.NewMessage(incoming=True, pattern=r'^(/start(.*)|/start@DRAKENROBOT$)')) 
+@draken.on(events.NewMessage(incoming=True, pattern=r'^/start(.*)|/start@DrakenKunRoBot$')) 
 async def start(mikey):
   if mikey.is_private:
     if not mikey.message.text == '/start':
-      if len(mikey.message.text.split(' ', 1)) == 2:
-        pass 
-      else:
-        return
       args = mikey.message.text[6:]
       passer = args.replace('_', '/')
       link = f'https://www.1337xx.to/torrent/{passer}'
