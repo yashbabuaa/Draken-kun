@@ -107,7 +107,7 @@ async def start(mikey):
       link = f'https://www.1337xx.to/torrent/{passer}'
       info = thirteenX.get_info(link)
       msg_to_send = f'*Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\n\nMagnet:\n*`{info[4]}`'
-      mikey.reply(msg_to_send)
+      await mikey.reply(msg_to_send, parse_mode='md')
       return
     await mikey.message.reply(f"Im {bot_name} a bot, \n\nMade by @DontKnowWhoRU2 and managed by @TvSeriesArchive")
     await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
@@ -133,7 +133,7 @@ async def torrentsearch(mikey):
   keybo = []
   msg_to_send = ''
   text = ''
-  while count <= 4:
+  while count == 4:
     for i in search:
       print(i)
       count += 1
@@ -153,7 +153,7 @@ async def torrentsearch(mikey):
     await mikey.reply('Sorry, no results found!')
     return 
   markup = [keybo, [Button.url(text='More Results', url = url)]]
-  await mikey.reply(msg_to_send, buttons=markup)
+  await mikey.reply(msg_to_send, buttons=markup, parse_mode = 'md')
 
 print('Im online!!!')
 
