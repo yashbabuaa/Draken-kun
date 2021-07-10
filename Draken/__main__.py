@@ -127,6 +127,7 @@ async def torrentsearch(mikey):
   except IndexError:
     return await mikey.reply('What to search? huh? that too i will decide? dont be lazy dumbass!')
   search = thirteenX.search(query)
+  play(search)
   count = 0
   count2 = 0
   keybo = []
