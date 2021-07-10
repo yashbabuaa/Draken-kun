@@ -133,7 +133,7 @@ async def torrentsearch(mikey):
   keybo = []
   msg_to_send = ''
   text = ''
-  while count == 4:
+  while count < 5:
     for i in search:
       print(i)
       count += 1
@@ -146,7 +146,7 @@ async def torrentsearch(mikey):
     r2 = i[1][30:]
     passer2 = r2.replace('/', '_')
     link = f'https://t.me/DrakenKunRoBot?start={passer2}'
-    text = f'{count2}.{i[0]}\nSize: {i[2]}\n<a href = "{link}">Click here to get more info</a>\n\n'
+    text += f'{count2}.{i[0]}\nSize: {i[2]}\n<a href = "{link}">Click here to get more info</a>\n\n'
   h = hina.post(title = f'Results for {query}', author = 'Draken', text=text)  
   url = h.get('url')
   if msg_to_send == '':
