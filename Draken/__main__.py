@@ -5,7 +5,7 @@ from telethon.sessions import StringSession
 from telethon import errors
 from telethon.tl.types import InputMessagesFilterDocument
 from html_telegraph_poster import TelegraphPoster 
-from 1377torrentscrape import thirteenX
+from torrentscrape import thirteenX
 print("Starting....")
 
 #variables 
