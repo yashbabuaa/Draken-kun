@@ -121,7 +121,11 @@ async def de(mikey):
 #torrent search 
 @draken.on(events.NewMessage(pattern=r'^\/torrent'))
 async def torrentsearch(mikey):
-  query = mikey.message.text 
+  query = mikey.message.text.split(' ', 1)
+  try:
+    query = query[1]
+  except IndexError:
+    return await mikey.reply('What to search? huh? that too i will decide? dont be lazy dumbass!')
   search = thirteenX.search(query)
   count = 0
   count2 = 0
