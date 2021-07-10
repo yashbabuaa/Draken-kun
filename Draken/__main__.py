@@ -4,7 +4,11 @@ from telethon import TelegramClient, events, Button
 from telethon.sessions import StringSession
 from telethon import errors
 from telethon.tl.types import InputMessagesFilterDocument
+from html_telegraph_poster import TelegraphPoster 
+from 1377torrentscrape import thirteenX
 print("Starting....")
+
+#variables 
 
 draken_token = os.environ.get('BOT_TOKEN')
 api_id = int(os.environ.get('API_ID'))
@@ -23,6 +27,11 @@ if takemichi:
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
 
 logger = logging.getLogger("__name__")
+
+hina = TelegraphPoster(use_api=True)
+hina.create_api_token('DontKnow')
+
+#commands
 
 @draken.on(events.NewMessage(incoming=True, pattern=r'^\/files(.*)'))
 @draken.on(events.NewMessage(incoming=True, pattern=r'^\/search(.*)'))
@@ -85,9 +94,21 @@ async def request(mikey):
   else:
     m = await mikey.reply("Found some results....", buttons = keybo)
   
-@draken.on(events.NewMessage(incoming=True, pattern=r'^/start|/start@DRAKENROBOT')) 
+@draken.on(events.NewMessage(incoming=True, pattern=r'^(/start(.*)|/start@DRAKENROBOT$)')) 
 async def start(mikey):
   if mikey.is_private:
+    if not mikey.message.text = '/start':
+      if len(mikey.message.text.split(' ', 1)) == 2:
+        pass 
+      else:
+        return
+      args = mikey.message.text[6:]
+      passer = args.replace('_', '/')
+      link = f'https://www.1337xx.to/torrent/{passer}'
+      info = thirteenX.get_info(link)
+      msg_to_send = f'*Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\n\nMagnet:\n*`{info[4]}`'
+      mikey.reply(msg_to_send)
+      return
     await mikey.message.reply(f"Im {bot_name} a bot, \n\nMade by @DontKnowWhoRU2 and managed by @TvSeriesArchive")
     await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
@@ -96,6 +117,36 @@ async def start(mikey):
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
   await mikey.delete()
+
+#torrent search 
+@draken.on(events.NewMessage(pattern=r'^\/torrent'))
+async def torrentsearch(mikey):
+  query = mikey.message.text 
+  search = thirteenX.search(query)
+  count = 0
+  count2 = 0
+  keybo = []
+  msg_to_send = ''
+  text = ''
+  while count <= 4:
+    for i in search:
+      count += 1
+      msg_to_send += f"*{count}.{i[0]}\n  Size: {i[3]}*\n\n"
+      r = i[2][30:]
+      passer = r.replace('/', '_')
+      keybo.append(Button.url(text=count, url=f'https://t.me/DrakenKunRoBot?start={passer}'))
+  for i in search: 
+    r2 = i[2][30:]
+    passer2 = r2.replace('/', '_')
+    link = f'https://t.me/DrakenKunRoBot?start={passer2}'
+    text = f'{count2}.{i[0]}\nSize: {i[3]}\n<a href = "{link}">Click here to get more info</a>\n\n'
+  h = hina.post(title = f'Results for {query}', author = 'Draken', text=text)  
+  url = h.get('url')
+  if msg_to_send = '':
+    await mikey.reply('Sorry, no results found!')
+    return 
+  markup = [keybo, [Button.url(text='More Results', url = url)]]
+  await mikey.reply(msg_to_send, buttons=markup)
 
 print('Im online!!!')
 

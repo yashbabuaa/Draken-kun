@@ -1,1 +1,5 @@
 telethon
+1337x
+requests 
+bs4
+html_telegraph_poster
