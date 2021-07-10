@@ -21,5 +21,5 @@ class thirteenX:
       
   def get_info(link):
     info = torrents.info(link=link)
-    return [info.get('name'), info.get('category'), info.get('leechers'), info.get('seeders'), info.get('magnetLink')]
+    return [info.get('name'), info.get('category'), info.get('leechers'), info.get('seeders'), info.get('magnetLink'), info.get('size')]
     
