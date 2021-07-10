@@ -140,6 +140,7 @@ async def torrentsearch(mikey):
       passer = r.replace('/', '_')
       keybo.append(Button.url(text=count, url=f'https://t.me/DrakenKunRoBot?start={passer}'))
   for i in search: 
+    count2 += 1
     r2 = i[2][30:]
     passer2 = r2.replace('/', '_')
     link = f'https://t.me/DrakenKunRoBot?start={passer2}'
