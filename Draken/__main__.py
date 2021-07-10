@@ -123,7 +123,7 @@ async def torrentsearch(mikey):
   except IndexError:
     return await mikey.reply('What to search? huh? that too i will decide? dont be lazy dumbass!')
   search = thirteenX.search(query)
-  print(search)
+  #print(search)
   count = 0
   count2 = 0
   keybo = []
@@ -131,7 +131,7 @@ async def torrentsearch(mikey):
   text = ''
   for i in search:
     while count < 5:
-      print(i)
+      #print(i)
       count += 1
       msg_to_send += f"**{count}.{i[0]}\n  Size: {i[2]}**\n\n"
       r = i[1][30:]
@@ -142,7 +142,7 @@ async def torrentsearch(mikey):
     r2 = i[1][30:]
     passer2 = r2.replace('/', '_')
     link = f'https://t.me/DrakenKunRoBot?start={passer2}'
-    text += f'{count2}.{i[0]}<br>Size: {i[2]}<br><a href = "{link}">Click here to get more info</a><br><br>'
+    text += f'{count2}.{i[0]}<br>Size: {i[2]}<a href = "{link}">Click here to get more info</a><p>'
   h = hina.post(title = f'Results for {query}', author = 'Draken', text=text)  
   url = h.get('url')
   if msg_to_send == '':
