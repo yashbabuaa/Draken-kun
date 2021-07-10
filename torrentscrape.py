@@ -9,7 +9,7 @@ class thirteenX:
     
   def search(query):
     search = torrents.search(query)
-    parser = h.get('items')
+    parser = search.get('items')
     result = []
     for i in parser:
       res = []
