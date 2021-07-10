@@ -106,11 +106,11 @@ async def start(mikey):
       passer = args.replace('_', '/')
       link = f'https://www.1337xx.to/torrent/{passer}'
       info = thirteenX.get_info(link)
-      msg_to_send = f'*Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\n\nMagnet:\n*`{info[4]}`'
+      msg_to_send = f'**Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\n\nSize: {info[5]}\n\nMagnet:\n**`{info[4]}`'
       await mikey.reply(msg_to_send, parse_mode='md')
       return
-    await mikey.message.reply(f"Im {bot_name} a bot, \n\nMade by @DontKnowWhoRU2 and managed by @TvSeriesArchive")
-    await draken.send_message(-1001569337079, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
+    await mikey.message.reply(f"Im {bot_name} a bot, \n\nMade by @DontKnowWhyRU and managed by @TvSeriesArchive")
+    await draken.send_message(-1001161807206, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
 
@@ -133,11 +133,11 @@ async def torrentsearch(mikey):
   keybo = []
   msg_to_send = ''
   text = ''
-  while count < 5:
-    for i in search:
+  for i in search:
+    while count < 5:
       print(i)
       count += 1
-      msg_to_send += f"*{count}.{i[0]}\n  Size: {i[2]}*\n\n"
+      msg_to_send += f"**{count}.{i[0]}\n  Size: {i[2]}**\n\n"
       r = i[1][30:]
       passer = r.replace('/', '_')
       keybo.append(Button.url(text=str(count), url=f'https://t.me/DrakenKunRoBot?start={passer}'))
@@ -146,7 +146,7 @@ async def torrentsearch(mikey):
     r2 = i[1][30:]
     passer2 = r2.replace('/', '_')
     link = f'https://t.me/DrakenKunRoBot?start={passer2}'
-    text += f'{count2}.{i[0]}\nSize: {i[2]}\n<a href = "{link}">Click here to get more info</a>\n\n'
+    text += f'{count2}.{i[0]}<br>Size: {i[2]}<br><a href = "{link}">Click here to get more info</a><br><br>'
   h = hina.post(title = f'Results for {query}', author = 'Draken', text=text)  
   url = h.get('url')
   if msg_to_send == '':
