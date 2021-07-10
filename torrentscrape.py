@@ -14,7 +14,7 @@ class thirteenX:
     for i in parser:
       res = []
       res.append(i.get('name')) #name
-      res.append(i.get('link') #link
+      res.append(i.get('link')) #link
       res.append(i.get('size')) # size
       result.append(res)
     return result
