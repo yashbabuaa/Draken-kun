@@ -142,7 +142,7 @@ async def torrentsearch(mikey):
     text = f'{count2}.{i[0]}\nSize: {i[3]}\n<a href = "{link}">Click here to get more info</a>\n\n'
   h = hina.post(title = f'Results for {query}', author = 'Draken', text=text)  
   url = h.get('url')
-  if msg_to_send = '':
+  if msg_to_send == '':
     await mikey.reply('Sorry, no results found!')
     return 
   markup = [keybo, [Button.url(text='More Results', url = url)]]
