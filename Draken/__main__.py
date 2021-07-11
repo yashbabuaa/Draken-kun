@@ -98,6 +98,8 @@ async def request(mikey):
 async def start(mikey):
   if mikey.is_private:
     if not mikey.message.text == '/start':
+      if len(mikey.message.text.split(' ', 1)) > 2:
+        return
       args = mikey.message.text[6:]
       passer = args.replace('_', '/')
       link = f'https://www.1337xx.to/torrent/{passer}'
@@ -142,7 +144,7 @@ async def torrentsearch(mikey):
     r2 = i[1][30:]
     passer2 = r2.replace('/', '_')
     link = f'https://t.me/DrakenKunRoBot?start={passer2}'
-    text += f'{count2}.{i[0]}<br>Size: {i[2]}<a href = "{link}">Click here to get more info</a><p>'
+    text += f'{count2}.{i[0]}<br>Size: {i[2]}<br><a href = "{link}">Click here to get more info</a><p>'
   h = hina.post(title = f'Results for {query}', author = 'Draken', text=text)  
   url = h.get('url')
   if msg_to_send == '':
