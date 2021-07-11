@@ -101,9 +101,7 @@ async def start(mikey):
       if len(mikey.message.text.split(' ', 1)) > 2:
         return
       args = mikey.message.text[6:]
-      passer = args.replace('_', '/')
-      link = f'https://www.1337xx.to/torrent/{passer}'
-      info = thirteenX.get_info(link)
+      info = thirteenX.get_info(args)
       msg_to_send = f'**Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\n\nSize: {info[5]}\n\nMagnet:\n**`{info[4]}`'
       await mikey.reply(msg_to_send, parse_mode='md')
       return
@@ -136,14 +134,12 @@ async def torrentsearch(mikey):
       #print(i)
       count += 1
       msg_to_send += f"**{count}.{i[0]}\n  Size: {i[2]}**\n\n"
-      r = i[1][30:]
-      passer = r.replace('/', '_')
-      keybo.append(Button.url(text=str(count), url=f'https://t.me/DrakenKunRoBot?start={passer}'))
+      r = i[1].split('/')[4]
+      keybo.append(Button.url(text=str(count), url=f'https://t.me/DrakenKunRoBot?start={r}'))
   for i in search: 
     count2 += 1
-    r2 = i[1][30:]
-    passer2 = r2.replace('/', '_')
-    link = f'https://t.me/DrakenKunRoBot?start={passer2}'
+    r2 = i[1].split('/')[4]
+    link = f'https://t.me/DrakenKunRoBot?start={r2}'
     text += f'{count2}.{i[0]}<br>Size: {i[2]}<br><a href = "{link}">Click here to get more info</a><p>'
   h = hina.post(title = f'Results for {query}', author = 'Draken', text=text)  
   url = h.get('url')
