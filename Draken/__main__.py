@@ -102,7 +102,7 @@ async def start(mikey):
         return
       args = mikey.message.text[6:]
       info = thirteenX.get_info(args)
-      msg_to_send = f'**Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\n\nSize: {info[5]}\n\nMagnet:\n**`{info[4]}`'
+      msg_to_send = f'**Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\nSize: {info[5]}\n\nMagnet:\n**`{info[4]}`'
       await mikey.reply(msg_to_send, parse_mode='md')
       return
     await mikey.message.reply(f"Im {bot_name} a bot, \n\nMade by @DontKnowWhyRU and managed by @TvSeriesArchive")
@@ -133,7 +133,7 @@ async def torrentsearch(mikey):
     while count < 5:
       #print(i)
       count += 1
-      msg_to_send += f"**{count}.{i[0]}\n  Size: {i[2]}**\n\n"
+      msg_to_send += f"**{count}.{i[0]}\nSize: {i[2]}**\n\n"
       r = i[1].split('/')[4]
       keybo.append(Button.url(text=str(count), url=f'https://t.me/DrakenKunRoBot?start={r}'))
   for i in search: 
