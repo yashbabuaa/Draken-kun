@@ -40,11 +40,11 @@ async def request(mikey):
   chat = -1001487075546
   chat2 = -1001550963689
   if mikey.message.text.startswith("#request"):
-    search = True
+    search = False
     if mikey.is_private:
       return
   else:
-    search = False
+    search = True
   query = mikey.message.text.split(" ", 1)
   try:
     query = query[1]
