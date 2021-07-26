@@ -40,8 +40,11 @@ async def request(mikey):
   chat = -1001487075546
   chat2 = -1001550963689
   if mikey.message.text.startswith("#request"):
+    search = True
     if mikey.is_private:
-      return 
+      return
+  else:
+    search = False
   query = mikey.message.text.split(" ", 1)
   try:
     query = query[1]
@@ -60,39 +63,37 @@ async def request(mikey):
     req_log = "True"
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
-  keybo = []
-  count = 0
-  text = ''
-  if only_files == "Off":
-    async for message in takemichi.iter_messages(chat, search=query):
-      text = f"{message.text[2:30]}..."
-      msg_id = message.id 
-      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
-      keybo.append([Button.url(text = text, url = link)])
-  else:
-    pass
-  count2 = 0
-  if keybo == []:
-    async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-      hek = await draken.get_messages(chat2, ids = message.id)
-      await draken.send_message(mikey.chat_id, file = hek.media)
-      count2 += 1 
-    if not count2 == 0:
-      await mikey.reply("👆")
-    if count2 == 0:
-      if req_log == "True":
-        req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
-        message_link = f"https://t.me/c/1364238597/{mikey.id}"
-        text = f"Request: {query}\nRequested by: {req_user}\n"
-        await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
-        await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
-        return
-      elif req_log == "Trufal":
-        await mikey.reply("It isnt in db, will add it soon!!")
-      else:
-        await mikey.reply("Gotcha, now wait like a good citizen...")
-  else:
-    m = await mikey.reply("Found some results....", buttons = keybo)
+  if search = True
+    keybo = []
+    count = 0
+    text = ''
+    if only_files == "Off":
+      async for message in takemichi.iter_messages(chat, search=query):
+        text = f"{message.text[2:30]}..."
+        msg_id = message.id 
+        link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
+        keybo.append([Button.url(text = text, url = link)])
+   else:
+      pass
+    count2 = 0
+    if keybo == []:
+      async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
+        hek = await draken.get_messages(chat2, ids = message.id)
+        await draken.send_message(mikey.chat_id, file = hek.media)
+        count2 += 1 
+      if not count2 == 0:
+        await mikey.reply("👆")
+      if count2 == 0:
+        await mikey.reply('Not found')
+    else:
+      m = await mikey.reply("Found some results....", buttons = keybo)
+    return
+  if req_log == "True":
+    req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
+    message_link = f"https://t.me/c/1364238597/{mikey.id}"
+    text = f"Request: {query}\nRequested by: {req_user}\n"
+    await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
+    await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start(.*)|/start@DrakenKunRoBot$')) 
 async def start(mikey):
