@@ -63,18 +63,18 @@ async def request(mikey):
     req_log = "True"
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
+  keybo = []
+  count = 0
+  text = ''
+  if only_files == "Off":
+    async for message in takemichi.iter_messages(chat, search=query):
+      text = f"{message.text[2:30]}..."
+      msg_id = message.id 
+      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
+      keybo.append([Button.url(text = text, url = link)])
+  else:
+    pass
   if search == True:
-    keybo = []
-    count = 0
-    text = ''
-    if only_files == "Off":
-      async for message in takemichi.iter_messages(chat, search=query):
-        text = f"{message.text[2:30]}..."
-        msg_id = message.id 
-        link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
-        keybo.append([Button.url(text = text, url = link)])
-    else:
-      pass
     count2 = 0
     if keybo == []:
       async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
@@ -88,13 +88,29 @@ async def request(mikey):
     else:
       m = await mikey.reply("Found some results....", buttons = keybo)
     return
+  if keybo == []:
+    poki = []
+    cnt = 0
+    async for message in takemichi.iter_messages(-1001567289850, search = query, reverse = True, filter =InputMessagesFilterDocument):
+      if cnt == 1:
+        break
+      link = f'https://t.me/c/1567289850/{message.id}'
+      poki.append([Button.url(text=f'{message.file.name}', url=link)])
+      cnt += 1
+    if not poki == []:
+      poki.append([Button.url(text='Join Channel to access', url = 'https://t.me/joinchat/p0HI9d4zlc43NTRl')])
+      await mikey.reply('Found some results in channel, check if matches your query, else request and be specific....', buttons=poki )
+      return
+  else:
+    await mikey.reply("Found some results....", buttons = keybo)
+    return
   if req_log == "True":
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/1364238597/{mikey.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
     await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
-    markup = [Button.url(text='Your Request', url='https://t.me/joinchat/p0HI9d4zlc43NTRl')]
-    await mikey.reply("Roger! Request sent, Now wait like a good citizen.", buttons=markup)
+    markup = [Button.url(text='Check Your Request', url='https://t.me/joinchat/p0HI9d4zlc43NTRl')]
+    await mikey.reply("Roger! Request taken, Now wait till its posted at the channel given below...", buttons=markup)
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start(.*)|/start@DrakenKunRoBot$')) 
 async def start(mikey):
