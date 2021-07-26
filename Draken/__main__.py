@@ -93,7 +93,8 @@ async def request(mikey):
     message_link = f"https://t.me/c/1364238597/{mikey.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
     await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
-    await mikey.reply("Roger! Request sent, Now wait like a good citizen.")
+    markup = [Button.url(text='Your Request', url='https://t.me/joinchat/p0HI9d4zlc43NTRl')]
+    await mikey.reply("Roger! Request sent, Now wait like a good citizen.", buttons=markup)
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start(.*)|/start@DrakenKunRoBot$')) 
 async def start(mikey):
