@@ -91,7 +91,7 @@ async def request(mikey):
   if keybo == []:
     poki = []
     cnt = 0
-    async for message in takemichi.iter_messages(-1001567289850, search = query, reverse = True, filter =InputMessagesFilterDocument or InputMessagesFilterVideo):
+    async for message in takemichi.iter_messages(-1001567289850, search = query, reverse = True, filter =[InputMessagesFilterDocument, InputMessagesFilterVideo]):
       if cnt == 1:
         break
       link = f'https://t.me/c/1567289850/{message.id}'
