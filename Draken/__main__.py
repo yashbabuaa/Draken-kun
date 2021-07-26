@@ -63,7 +63,7 @@ async def request(mikey):
     req_log = "True"
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
-  if search = True
+  if search == True
     keybo = []
     count = 0
     text = ''
