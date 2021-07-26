@@ -95,7 +95,7 @@ async def request(mikey):
       if cnt == 1:
         break
       link = f'https://t.me/c/1567289850/{message.id}'
-      poki.append([Button.url(text=f'{message.file.name}', url=link)])
+      poki.append([Button.url(text=f'{message.file.name[10:]}', url=link)])
       cnt += 1
     if not poki == []:
       poki.append([Button.url(text='Join Channel to access', url = 'https://t.me/joinchat/p0HI9d4zlc43NTRl')])
