@@ -3,7 +3,7 @@ import os
 from telethon import TelegramClient, events, Button
 from telethon.sessions import StringSession
 from telethon import errors
-from telethon.tl.types import InputMessagesFilterDocument
+from telethon.tl.types import InputMessagesFilterDocument, InputMessagesFilterVideo
 from html_telegraph_poster import TelegraphPoster 
 from torrentscrape import thirteenX
 print("Starting....")
@@ -91,7 +91,7 @@ async def request(mikey):
   if keybo == []:
     poki = []
     cnt = 0
-    async for message in takemichi.iter_messages(-1001567289850, search = query, reverse = True, filter =InputMessagesFilterDocument):
+    async for message in takemichi.iter_messages(-1001567289850, search = query, reverse = True, filter =InputMessagesFilterDocument or InputMessagesFilterVideo):
       if cnt == 1:
         break
       link = f'https://t.me/c/1567289850/{message.id}'
