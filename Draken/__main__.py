@@ -167,8 +167,12 @@ async def post_comp(mikey):
       description='Button make for post completion...',
       text='Your request was posted in the channel, check it out!',
       buttons=[
-          Button.url(text='The post', url=link),
-          Button.url(text='Join to Accsss', url='https://t.me/joinchat/p0HI9d4zlc43NTRl'),
+          [
+            Button.url(text='The post', url=link),
+            ],
+          [
+            Button.url(text='Join to Accsss', url='https://t.me/joinchat/p0HI9d4zlc43NTRl'),
+            ],
         ]
       )
     ]
