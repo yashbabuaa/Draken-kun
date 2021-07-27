@@ -181,7 +181,7 @@ async def post_comp(mikey):
 @user_admin
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
-  hek = mikey.message.text 
+  hek = mikey.get_message.text 
   newtext = f'{hek}\n\nRequest Complete!'
   await mikey.edit(newtext)
 
