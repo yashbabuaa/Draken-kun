@@ -52,7 +52,7 @@ async def user_admin(the_fuc):
 @user_admin
 @draken.on(events.NewMessage(incoming=True,pattern=r'^\/admincache'))
 async def admincache(mikey):
-  await get_all_admins 
+  await get_all_admins(mikey.chat_id)
   await mikey.reply('Done!')
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^\/files(.*)'))
@@ -159,7 +159,7 @@ async def start(mikey):
 @draken.on(events.InlineQuery)
 async def post_comp(mikey):
   if mikey.text == '':
-    await mikey.answer([], switch_pm_text='Paste the link', switch_pm_param="start")
+    await mikey.answer([], switch_pm='Paste the link', switch_pm_param="start")
   link = mikey.text 
   hek = [
     mikey.builder.article(
