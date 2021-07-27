@@ -37,8 +37,9 @@ hina.create_api_token('DontKnow')
 
 #commands
 admins = []
+
 async def get_all_admins(chat_id):
-  await for admin in draken.iter_participents(chat_id, filter=ChannelParticipantsAdmins):
+  await for admin in draken.iter_participants(chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
 
 async def user_admin(the_fuc):
