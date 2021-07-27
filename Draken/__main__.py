@@ -135,9 +135,9 @@ async def request(mikey):
         pek = await takemichi.send_file(-1001567289850,file=message.media)
         if cnter == 0:
           link = f'https://t.me/c/1567289850/{pek.id}'
+          await mikey.reply('Sent in the channel!, Check out!', buttons=[Button.url(text='Check', url=link), Button.url(text='Join', url='https://t.me/joinchat/p0HI9d4zlc43NTRl')])
         cnter  += 1
       if not cnter == 0:
-        await mikey.reply('Sent in the channel!, Check out!', buttons=[Button.url(text='Check!', url=link), Button.url(text='Join To Access', url='https://t.me/joinchat/p0HI9d4zlc43NTRl')])
         return
   else:
     await mikey.reply("Found some results....", buttons = keybo)
