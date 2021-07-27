@@ -120,7 +120,7 @@ async def request(mikey):
         if cnt == 1:
           break
         link = f'https://t.me/c/1567289850/{message.id}'
-        poki.append([Button.url(text=f'{message.file.name[:-10]}...', url=link)])
+        poki.append([Button.url(text=f'Check!', url=link)])
         cnt += 1
       else:
         pass
