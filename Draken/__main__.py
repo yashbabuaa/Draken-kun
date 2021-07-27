@@ -172,7 +172,7 @@ async def post_comp(mikey):
         ]
       )
     ]
- await mikey.answer(hek)
+  await mikey.answer(hek)
 
 @user_admin
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
