@@ -216,7 +216,7 @@ async def torrentsearch(mikey):
 
 print('Im online!!!')
 
-loop.run_until_disconnected(get_all_admins(-1001364238597))
+loop.run_until_complete(get_all_admins(-1001364238597))
 
 takemichi.start()
 draken.start()
