@@ -4,8 +4,11 @@ from telethon import TelegramClient, events, Button
 from telethon.sessions import StringSession
 from telethon import errors
 from telethon.tl.types import InputMessagesFilterDocument, InputMessagesFilterVideo
+from telethon.tl.types import ChannelParticipantsAdmins
 from html_telegraph_poster import TelegraphPoster 
 from torrentscrape import thirteenX
+import asyncio 
+
 print("Starting....")
 
 #variables 
@@ -16,6 +19,7 @@ api_hash = os.environ.get('API_HASH')
 string = os.environ.get('STRING_SESSION')
 bot_name = os.environ.get('BOT_NAME', 'Draken')
 
+loop = asyncio.get_event_loop()
 
 draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
@@ -32,7 +36,24 @@ hina = TelegraphPoster(use_api=True)
 hina.create_api_token('DontKnow')
 
 #commands
+admins = []
+async def get_all_admins(chat_id):
+  await for admin in draken.iter_participents(chat_id, filter=ChannelParticipantsAdmins):
+    admins.append(admin.id)
 
+async def user_admin(the_fuc):
+  async def check_admin(mikey):
+    if slime.sender_id in admins:
+      return await the_fuc(mikey)
+    else:
+      pass
+
+@user_admin
+@draken.on(events.NewMessage(incoming=True,pattern=r'^\/admincache'))
+async def admincache(mikey):
+  await get_all_admins 
+  await mikey.reply('Done!')
+  
 @draken.on(events.NewMessage(incoming=True, pattern=r'^\/files(.*)'))
 @draken.on(events.NewMessage(incoming=True, pattern=r'^\/search(.*)'))
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
@@ -44,6 +65,8 @@ async def request(mikey):
     if mikey.is_private:
       return
   else:
+    if not mikey.is_private:
+      return
     search = True
   query = mikey.message.text.split(" ", 1)
   try:
@@ -91,12 +114,15 @@ async def request(mikey):
   if keybo == []:
     poki = []
     cnt = 0
-    async for message in takemichi.iter_messages(-1001567289850, search = query, reverse = True, filter =[InputMessagesFilterDocument, InputMessagesFilterVideo]):
-      if cnt == 1:
-        break
-      link = f'https://t.me/c/1567289850/{message.id}'
-      poki.append([Button.url(text=f'{message.file.name[:-10]}...', url=link)])
-      cnt += 1
+    async for message in takemichi.iter_messages(-1001567289850, search = query, reverse = True):
+      if message.media:
+        if cnt == 1:
+          break
+        link = f'https://t.me/c/1567289850/{message.id}'
+        poki.append([Button.url(text=f'{message.file.name[:-10]}...', url=link)])
+        cnt += 1
+      else:
+        pass
     if not poki == []:
       poki.append([Button.url(text='Join Channel to access', url = 'https://t.me/joinchat/p0HI9d4zlc43NTRl')])
       await mikey.reply('Found some results in channel, check if matches your query, else request and be specific....', buttons=poki )
@@ -128,6 +154,30 @@ async def start(mikey):
   else:
     await mikey.reply("Im up and working!")
 
+@user_admin
+@draken.on(events.InlineQuery)
+async def post_comp(mikey):
+  if mikey.text == '':
+    await mikey.answer([], switch_pm_text='Paste the link', switch_pm_param="start")
+  link = mikey.text 
+  hek = [
+    mikey.builder.article(
+      title='Post Complete',
+      description='Button make for post completion...'
+      text='Your request was being posted in the channel, check it out!',
+      buttons=[
+        [
+          Button.url(text='The post', url=link)
+          ],
+        [
+          Button.url(text='Join to Accsss', url='https://t.me/joinchat/p0HI9d4zlc43NTRl')
+          ]
+        ]
+      )
+    ]
+ await mikey.answer(hek)
+
+@user_admin
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
   await mikey.delete()
@@ -168,6 +218,8 @@ async def torrentsearch(mikey):
   await mikey.reply(msg_to_send, buttons=markup, parse_mode = 'md')
 
 print('Im online!!!')
+
+loop.run_until_disconnected(get_all_admins(-1001364238597))
 
 takemichi.start()
 draken.start()
