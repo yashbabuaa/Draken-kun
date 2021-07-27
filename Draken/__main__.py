@@ -128,6 +128,16 @@ async def request(mikey):
       poki.append([Button.url(text='Join Channel to access', url = 'https://t.me/joinchat/p0HI9d4zlc43NTRl')])
       await mikey.reply('Found some results in channel, check if matches your query, else request and be specific....', buttons=poki )
       return
+    if poki == []:
+      cnter = 0
+      link = ''
+      async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
+        pek = await takemichi.send_file(-1001567289850,file=message.media)
+        if cnter == 0:
+          link = f'https://t.me/c/1567289850/{pek.id}'
+      if not cnter == 0:
+        await mikey.reply('Sent in the channel!, Check out!', buttons=[Button.url(text='Check!', url=link), Button.url(text='Join To Access', url='https://t.me/joinchat/p0HI9d4zlc43NTRl')])
+      return
   else:
     await mikey.reply("Found some results....", buttons = keybo)
     return
@@ -167,12 +177,8 @@ async def post_comp(mikey):
       description='Button make for post completion...',
       text='Your request was posted in the channel, check it out!',
       buttons=[
-          [
             Button.url(text='The post', url=link),
-            ],
-          [
             Button.url(text='Join to Accsss', url='https://t.me/joinchat/p0HI9d4zlc43NTRl'),
-            ],
         ]
       )
     ]
