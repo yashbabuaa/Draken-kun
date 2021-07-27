@@ -181,7 +181,9 @@ async def post_comp(mikey):
 @user_admin
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
-  await mikey.delete()
+  hek = mikey.text 
+  newtext = f'{hek}\n\nRequest Complete!'
+  await mikey.edit(newtext)
 
 #torrent search 
 @draken.on(events.NewMessage(pattern=r'^\/torrent'))
