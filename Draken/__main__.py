@@ -212,7 +212,7 @@ async def post_comp(mikey):
 @user_admin
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
-  mikey.delete()
+  await mikey.delete()
 
 #torrent search 
 @draken.on(events.NewMessage(pattern=r'^\/torrent'))
