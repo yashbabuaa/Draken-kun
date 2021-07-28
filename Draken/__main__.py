@@ -196,12 +196,10 @@ async def post_comp(mikey):
       msg_id = message.id 
       link = f"https://t.me/c/1487075546/{str(msg_id)}" 
       title = message.raw_text.split('\n\n')[0]
-      phto = message.media
       keybo.append(
         mikey.builder.article(
           title=f'{title}',
           description=f'{message.text[:-25]}......',
-          thumb=phto,
           text=f'{message.text}',
           )
         )
