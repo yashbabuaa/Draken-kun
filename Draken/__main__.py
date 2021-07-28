@@ -171,7 +171,7 @@ async def start(mikey):
 async def post_comp(mikey):
   if mikey.text == '':
     if mikey.sender_id in admins:
-      await mikey.answer([], switch_pm='Paste the link or search for something in @TvSeriesArchive...', switch_pm_param="start")
+      await mikey.answer([], switch_pm=f'Welcome {mikey.sender.first_name}', switch_pm_param="start")
     else:
       await mikey.answer([], switch_pm='Search in @TvSeriesArchive', switch_pm_param='start')
   the_text = mikey.text 
@@ -196,10 +196,11 @@ async def post_comp(mikey):
       msg_id = message.id 
       link = f"https://t.me/c/1487075546/{str(msg_id)}" 
       title = message.raw_text.split('\n\n')[0]
+      description = message.raw_text.replace('\n', '|')
       keybo.append(
         mikey.builder.article(
           title=f'{title}',
-          description=f'{message.text[:-25]}......',
+          description=f'{description}......',
           text=f'{message.text}',
           )
         )
