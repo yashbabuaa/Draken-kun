@@ -184,7 +184,7 @@ async def post_comp(mikey):
         description='Button make for post completion...',
         text='Your request was posted in the channel, check it out!',
         buttons=[
-            Button.url(text='The post', url=link),
+            Button.url(text='The post', url=the_text),
             Button.url(text='Join to Accsss', url='https://t.me/joinchat/p0HI9d4zlc43NTRl'),
           ]
         )
@@ -192,7 +192,7 @@ async def post_comp(mikey):
     await mikey.answer(hek)
   else:
     keybo = []
-    async for message in takemichi.iter_messages(chat, search=query):
+    async for message in takemichi.iter_messages(-1001487075546, search=the_text):
       text = f"{message.text[2:30]}..."
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
