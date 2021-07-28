@@ -193,9 +193,8 @@ async def post_comp(mikey):
   else:
     keybo = []
     async for message in takemichi.iter_messages(-1001487075546, search=the_text):
-      text = f"{message.text[2:30]}..."
       msg_id = message.id 
-      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
+      link = f"https://t.me/c/1487075546/{str(msg_id)}" 
       title = message.text.split('\n\n')[0]
       keybo.append(
         mikey.builder.article(
