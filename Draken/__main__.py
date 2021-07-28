@@ -166,24 +166,45 @@ async def start(mikey):
   else:
     await mikey.reply("Im up and working!")
 
-@user_admin
+
 @draken.on(events.InlineQuery)
 async def post_comp(mikey):
   if mikey.text == '':
-    await mikey.answer([], switch_pm='Paste the link', switch_pm_param="start")
-  link = mikey.text 
-  hek = [
-    mikey.builder.article(
-      title='Post Complete',
-      description='Button make for post completion...',
-      text='Your request was posted in the channel, check it out!',
-      buttons=[
+    if mikey.sender_id in admins:
+      await mikey.answer([], switch_pm='Paste the link or search for something in @TvSeriesArchive...', switch_pm_param="start")
+    else:
+      await mikey.answer([], switch_pm='Search in @TvSeriesArchive', switch_pm_param='start')
+  the_text = mikey.text 
+  if the_text.startswith('https://'):
+    if mikey.sender_id not in admins:
+      return 
+    hek = [
+      mikey.builder.article(
+        title='Post Complete',
+        description='Button make for post completion...',
+        text='Your request was posted in the channel, check it out!',
+        buttons=[
             Button.url(text='The post', url=link),
             Button.url(text='Join to Accsss', url='https://t.me/joinchat/p0HI9d4zlc43NTRl'),
-        ]
-      )
-    ]
-  await mikey.answer(hek)
+          ]
+        )
+      ]
+    await mikey.answer(hek)
+  else:
+    keybo = []
+    async for message in takemichi.iter_messages(chat, search=query):
+      text = f"{message.text[2:30]}..."
+      msg_id = message.id 
+      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
+      title = message.text.split('\n\n')[0]
+      keybo.append(
+        mikey.builder.article[
+          title=f'{title}',
+          description=f'{message.text[-25]}......',
+          text=f'{message.raw_text}[­ ]({link})'
+          ]
+        )
+    await mikey.answer(keybo)
 
 @user_admin
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
