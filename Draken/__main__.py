@@ -193,6 +193,9 @@ async def post_comp(mikey):
   else:
     keybo = []
     async for message in takemichi.iter_messages(-1001487075546, search=the_text):
+      if len(keybo) > 30:
+        await mikey.answer([], switch_pm='Try to be a little specific...', switch_pm_param='')
+        return
       msg_id = message.id 
       link = f"https://t.me/c/1487075546/{str(msg_id)}" 
       title = message.raw_text.split('\n\n')[0]
@@ -209,10 +212,7 @@ async def post_comp(mikey):
 @user_admin
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
-  hek = await mikey.get_message()
-  newtext = f'{hek.text}\n\nRequest Complete!'
-  await mikey.edit(newtext)
-  await mikey.answer()
+  mikey.delete()
 
 #torrent search 
 @draken.on(events.NewMessage(pattern=r'^\/torrent'))
