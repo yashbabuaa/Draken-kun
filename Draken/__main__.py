@@ -195,12 +195,15 @@ async def post_comp(mikey):
     async for message in takemichi.iter_messages(-1001487075546, search=the_text):
       msg_id = message.id 
       link = f"https://t.me/c/1487075546/{str(msg_id)}" 
-      title = message.text.split('\n\n')[0]
+      title = message.raw_text.split('\n\n')[0]
+      phto = message.photo
       keybo.append(
         mikey.builder.article(
           title=f'{title}',
           description=f'{message.text[:-25]}......',
-          text=f'{message.text}[­ ]({link})'
+          thumb=phto,
+          text=f'{message.text}',
+          photo = phto,
           )
         )
     await mikey.answer(keybo)
