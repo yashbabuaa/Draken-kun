@@ -203,7 +203,6 @@ async def post_comp(mikey):
           description=f'{message.text[:-25]}......',
           thumb=phto,
           text=f'{message.text}',
-          photo = phto,
           )
         )
     await mikey.answer(keybo)
