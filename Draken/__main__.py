@@ -199,7 +199,7 @@ async def post_comp(mikey):
       keybo.append(
         mikey.builder.article(
           title=f'{title}',
-          description=f'{message.text[-25]}......',
+          description=f'{message.text[:-25]}......',
           text=f'{message.raw_text}[­ ]({link})'
           )
         )
