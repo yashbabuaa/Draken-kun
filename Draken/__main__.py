@@ -200,7 +200,7 @@ async def post_comp(mikey):
         mikey.builder.article(
           title=f'{title}',
           description=f'{message.text[:-25]}......',
-          text=f'{message.raw_text}[­ ]({link})'
+          text=f'{message.text}[­ ]({link})'
           )
         )
     await mikey.answer(keybo)
