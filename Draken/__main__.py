@@ -198,11 +198,11 @@ async def post_comp(mikey):
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
       title = message.text.split('\n\n')[0]
       keybo.append(
-        mikey.builder.article[
+        mikey.builder.article(
           title=f'{title}',
           description=f'{message.text[-25]}......',
           text=f'{message.raw_text}[­ ]({link})'
-          ]
+          )
         )
     await mikey.answer(keybo)
 
