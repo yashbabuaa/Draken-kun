@@ -223,7 +223,7 @@ async def imdb_search(mikey):
   except IndexError:
     await mikey.reply('What to?')
   search = movie.movie_search(query)
-  text = f'**{search[2]}**\n**Imdb Rating:** {search[3]}/10.0\n**Genres:** {",".join(search[4])}\n**Year:** {search[5]}\n**Type:** {search[6]}\n\n**Synopsis**: {search[7][1][:-20]}'
+  text = f'**{search[2]}**\n**Imdb Rating:** {search[3]}/10.0\n**Genres:** {for i in search[4]}\n**Year:** {search[5]}\n**Type:** {search[6]}\n\n**Synopsis**: {search[7][1][:-20]}'
   await mikey.reply(file=search[0], caption=text)
 
 #torrent search 
