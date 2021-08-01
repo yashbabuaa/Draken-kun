@@ -219,7 +219,7 @@ async def de(mikey):
 @draken.on(events.NewMessage(pattern=r'^\/imdb(.*)'))
 async def imdb_search(mikey):
   try:
-    query = mikey.message.text.split(' ', 1)
+    query = mikey.message.text.split(' ', 1)[1]
   except IndexError:
     await mikey.reply('What to?')
   search = movie.movie_search(query)
