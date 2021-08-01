@@ -225,7 +225,7 @@ async def imdb_search(mikey):
   search = movie.movie_search(query)
   genres = ','.join(search[3])
   text = f'**{search[1]}**\n**Imdb Rating:** {search[2]}/10.0\n**Genres:** {genres}\n**Year:** {search[4]}\n**Type:** {search[5]}\n\n**Synopsis**: {search[6][1][:-20]}'
-  await draken.send_message(mikey.chat_id,file=search[0],caption=text,reply_to=mikey.id])
+  await draken.send_message(mikey.chat_id,file=search[0],caption=text,reply_to=mikey.id)
 
 #torrent search 
 @draken.on(events.NewMessage(pattern=r'^\/torrent'))
