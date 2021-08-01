@@ -8,6 +8,7 @@ from telethon.tl.types import ChannelParticipantsAdmins
 from html_telegraph_poster import TelegraphPoster 
 from torrentscrape import thirteenX
 import asyncio 
+import movie
 
 print("Starting....")
 
@@ -95,7 +96,7 @@ async def request(mikey):
       text = message.raw_text.split('•')[0]
       msg_id = message.id 
       link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
-      keybo.append([Button.url(text = text, url = link)])
+      keybo.append([Button.url(text = text[:-10]xturl = link)])
   else:
     pass
   if search == True:
@@ -213,6 +214,17 @@ async def post_comp(mikey):
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
   await mikey.delete()
+
+#imdbSearch
+@draken.on(events.NewMessage(pattern=r'^\/imdb(.*)'))
+async def imdb_search(mikey):
+  try:
+    query = mikey.message.text.split(' ', 1)
+  except IndexError:
+    await mikey.reply('What to?')
+  search = movie.movie_search(query)
+  text = f'**{search[2]}**\n**Imdb Rating:** {search[3]}/10.0\n**Genres:** {",".join(search[4])}\n**Year:** {search[5]}\n**Type:** {search[6]}\n\n**Synopsis**: {search[7][1][:-20]}'
+  await mikey.reply(file=search[0], caption=text)
 
 #torrent search 
 @draken.on(events.NewMessage(pattern=r'^\/torrent'))
