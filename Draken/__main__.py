@@ -224,7 +224,7 @@ async def imdb_search(mikey):
     await mikey.reply('What to?')
   search = movie.movie_search(query)
   genres = ','.join(search[3])
-  text = f'**{search[1]}**\n**Imdb Rating:** {search[2]}/10.0\n**Genres:** {genres}\n**Year:** {search[5]}\n**Type:** {search[6]}\n\n**Synopsis**: {search[7][0].spilt(":")[0]}....[­ ]({search[0]})'
+  text = f'**{search[1]}**\n**Imdb Rating:** {search[2]}/10.0\n**Genres:** {genres}\n**Year:** {search[5]}\n**Type:** {search[6]}\n\n**Synopsis**: {search[7][0].split(":")[0]}....[­ ]({search[0]})'
   await mikey.reply(text)
 
 #torrent search 
