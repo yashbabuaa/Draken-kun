@@ -80,7 +80,7 @@ async def request(mikey):
     only_files = "On"
   else:
     only_files = "Off"
-  if not mikey.chat_id == -1001364238597:
+  if not mikey.chat_id == -1001572963444:
     req_log = "False"
   elif mikey.message.text.startswith("/search"):
     req_log = "Trufal"
@@ -264,7 +264,7 @@ async def torrentsearch(mikey):
 
 print('Im online!!!')
 
-loop.run_until_complete(get_all_admins(-1001364238597))
+loop.run_until_complete(get_all_admins(-1001572963444))
 
 takemichi.start()
 draken.start()
