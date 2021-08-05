@@ -63,13 +63,8 @@ async def request(mikey):
   chat = -1001487075546
   chat2 = -1001550963689
   if mikey.message.text.startswith("#request"):
-    search = False
     if mikey.is_private:
       return
-  else:
-    if not mikey.is_private:
-      return
-    search = True
   query = mikey.message.text.split(" ", 1)
   try:
     query = query[1]
@@ -99,9 +94,8 @@ async def request(mikey):
       keybo.append([Button.url(text = f'{text[:30]}...',url= link)])
   else:
     pass
-  if search == True:
-    count2 = 0
-    if keybo == []:
+  if keybo == []:
+      count2 = 0
       async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
         hek = await draken.get_messages(chat2, ids = message.id)
         await draken.send_message(mikey.chat_id, file = hek.media)
@@ -109,40 +103,11 @@ async def request(mikey):
       if not count2 == 0:
         await mikey.reply("👆")
       if count2 == 0:
-        await mikey.reply('Not found')
-    else:
-      m = await mikey.reply("Found some results....", buttons = keybo)
-    return
-  if keybo == []:
-    poki = []
-    cnt = 0
-    async for message in takemichi.iter_messages(-1001567289850, search = query, reverse = True):
-      if message.media:
-        if cnt == 1:
-          break
-        link = f'https://t.me/c/1567289850/{message.id}'
-        poki.append([Button.url(text=f'Check!', url=link)])
-        cnt += 1
-      else:
-        pass
-    if not poki == []:
-      poki.append([Button.url(text='Join Channel to access', url = 'https://t.me/joinchat/p0HI9d4zlc43NTRl')])
-      await mikey.reply('Found some results in channel, check if matches your query, else request and be specific....', buttons=poki )
-      return
-    if poki == []:
-      cnter = 0
-      link = ''
-      async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-        pek = await takemichi.send_file(-1001567289850,file=message.media)
-        if cnter == 0:
-          link = f'https://t.me/c/1567289850/{pek.id}'
-          await mikey.reply('Sent in the channel!, Check out!', buttons=[Button.url(text='Check', url=link), Button.url(text='Join', url='https://t.me/joinchat/p0HI9d4zlc43NTRl')])
-        cnter  += 1
-      if not cnter == 0:
-        return
+        if req_log == False:
+          await mikey.reply('Not found')
   else:
-    await mikey.reply("Found some results....", buttons = keybo)
-    return
+      m = await mikey.reply("Found some results....", buttons = keybo)
+     return
   if req_log == "True":
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/1364238597/{mikey.id}"
@@ -171,29 +136,10 @@ async def start(mikey):
 @draken.on(events.InlineQuery)
 async def post_comp(mikey):
   if mikey.text == '':
-    if mikey.sender_id in admins:
-      await mikey.answer([], switch_pm=f'Welcome {mikey.sender.first_name}', switch_pm_param="start")
-    else:
       await mikey.answer([], switch_pm='Search in @TvSeriesArchive', switch_pm_param='start')
   the_text = mikey.text 
-  if the_text.startswith('https://'):
-    if mikey.sender_id not in admins:
-      return 
-    hek = [
-      mikey.builder.article(
-        title='Post Complete',
-        description='Button make for post completion...',
-        text='Your request was posted in the channel, check it out!',
-        buttons=[
-            Button.url(text='The post', url=the_text),
-            Button.url(text='Join to Accsss', url='https://t.me/joinchat/p0HI9d4zlc43NTRl'),
-          ]
-        )
-      ]
-    await mikey.answer(hek)
-  else:
-    keybo = []
-    async for message in takemichi.iter_messages(-1001487075546, search=the_text):
+  keybo = []
+  async for message in takemichi.iter_messages(-1001487075546, search=the_text):
       if len(keybo) > 30:
         await mikey.answer([], switch_pm='Try to be a little specific...', switch_pm_param='')
         return
@@ -208,6 +154,8 @@ async def post_comp(mikey):
           text=f'{message.text}',
           )
         )
+    if keybo == []:
+      await mikey.answer([], switch_pm='Couldn\'t find...', switch_pm_param='')
     await mikey.answer(keybo)
 
 @user_admin
