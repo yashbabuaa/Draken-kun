@@ -154,9 +154,9 @@ async def post_comp(mikey):
           text=f'{message.text}',
           )
         )
-    if keybo == []:
+  if keybo == []:
       await mikey.answer([], switch_pm='Couldn\'t find...', switch_pm_param='')
-    await mikey.answer(keybo)
+  await mikey.answer(keybo)
 
 @user_admin
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
