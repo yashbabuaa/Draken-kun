@@ -102,9 +102,11 @@ async def request(mikey):
         count2 += 1 
       if not count2 == 0:
         await mikey.reply("👆")
+        return
       if count2 == 0:
         if req_log == False:
           await mikey.reply('Not found')
+          return
   else:
       m = await mikey.reply("Found some results....", buttons = keybo)
       return
