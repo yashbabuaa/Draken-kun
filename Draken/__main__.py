@@ -74,8 +74,7 @@ async def request(mikey):
     return
   chat = -1001487075546
   chat2 = -1001550963689
-  if mikey.message.text.startswith("#request"):
-    query = mikey.message.text.split(" ", 1)
+  query = mikey.message.text.split(" ", 1)
   try:
     query = query[1]
   except IndexError:
@@ -111,8 +110,7 @@ async def request(mikey):
   if keybo == []:
       count2 = 0
       async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-        hek = await draken.get_messages(chat2, ids = message.id)
-        await draken.send_message(mikey.chat_id, file = hek.media)
+        await takemichi.send_file(mikey.chat_id, message.media)
         count2 += 1 
       if not count2 == 0:
         await mikey.reply("👆")
