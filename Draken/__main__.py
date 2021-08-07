@@ -9,6 +9,9 @@ from html_telegraph_poster import TelegraphPoster
 from torrentscrape import thirteenX
 import asyncio 
 import movie
+import mimetypes
+import requests
+import re
 
 print("Starting....")
 
@@ -39,6 +42,13 @@ hina.create_api_token('DontKnow')
 #commands
 admins = []
 
+def hrs(size, decimal_places=2):
+    for unit in ['B', 'KB', 'MB', 'GB', 'TB', 'PB']:
+        if size < 1024.0 or unit == 'PB':
+            break
+        size /= 1024.0
+    return f"{size:.{decimal_places}f} {unit}"
+
 async def get_all_admins(chat_id):
   async for admin in draken.iter_participants(chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
@@ -60,11 +70,11 @@ async def admincache(mikey):
 @draken.on(events.NewMessage(incoming=True, pattern=r'^\/search(.*)'))
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
 async def request(mikey):
+  if mikey.is_private:
+    return
   chat = -1001487075546
   chat2 = -1001550963689
   if mikey.message.text.startswith("#request"):
-    if mikey.is_private:
-      return
   query = mikey.message.text.split(" ", 1)
   try:
     query = query[1]
@@ -72,12 +82,16 @@ async def request(mikey):
     await mikey.reply("Request something bakayaro!")
     return
   if mikey.message.text.startswith("/files"):
+    if not mikey.sender_id in admins:
+      return  
     only_files = "On"
   else:
     only_files = "Off"
   if not mikey.chat_id == -1001572963444:
     req_log = "False"
   elif mikey.message.text.startswith("/search"):
+    if not mikey.sender_id in admins:
+      return  
     req_log = "Trufal"
   else:
     req_log = "True"
@@ -175,6 +189,39 @@ async def imdb_search(mikey):
   genres = ','.join(search[3])
   text = f'**{search[1]}**\n**Imdb Rating:** {search[2]}/10.0\n**Genres:** {genres}\n**Year:** {search[5]}\n**Type:** {search[6]}\n\n**Synopsis**: {search[7][0].split(":")[0]}....[­ ]({search[0]})'
   await mikey.reply(text)
+
+@draken.on(events.NewMessage(pattern=r'^\/up(.*)'))
+async def upload(mikey):
+  if not mikey.is_private:
+    return
+  if not mikey.sender_id in admins:
+    return
+  try:
+    query = mikey.message.text.split(' ', 1)[1]
+  except IndexError:
+    return await mikey.reply('wht to?')
+  r = request.get(query, stream=True)
+  if r.status_code == 200 and r.content:
+      #extension = mimtypes.guess_extension(r.headers.get('content-type', '').split(';')[0])
+      d = r.headers['content-disposition']
+      fname = re.findall("filename=(.+)", d)
+      f = open(fname, 'wb')
+      m = await mikey.reply(f'Downloading {fname}....')
+      count = 0
+      size = r.headers['Content-lenght']
+      dsize = 0
+      for i in r.iter_content(chunk_size=1024*10):
+        f.write(i)
+        count += 1
+        dsize += 1024*10
+        if count == 10:
+          await m.edit(f'{hrs(dsize)} of {hrs(size)} done...')
+      await m.edit('Uploading....')
+      await draken.send_file(mikey.chat_id, fname)
+  else:
+    await mikey.reply('Ahk couldnt!')  
+  
+
 
 #torrent search 
 @draken.on(events.NewMessage(pattern=r'^\/torrent'))
