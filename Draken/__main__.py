@@ -75,15 +75,15 @@ async def request(mikey):
   chat = -1001487075546
   chat2 = -1001550963689
   query = mikey.message.text.split(" ", 1)
-  try:
-    query = query[1]
-  except IndexError:
-    await mikey.reply("Request something bakayaro!")
-    return
   if mikey.message.text.startswith("/files"):
     if not mikey.sender_id in admins:
-      return  
+      try:
+        await slime.delete()
+      except Exception:
+        print(Exception)
+        pass
     only_files = "On"
+    req_log='False'
   else:
     only_files = "Off"
   if not mikey.chat_id == -1001572963444:
@@ -91,9 +91,12 @@ async def request(mikey):
   elif mikey.message.text.startswith("/search"):
     if not mikey.sender_id in admins:
       return  
-    req_log = "Trufal"
-  else:
-    req_log = "True"
+    req_log='False'
+  try:
+    query = query[1]
+  except IndexError:
+    await mikey.reply("Request something bakayaro!")
+    return
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
   keybo = []
@@ -110,7 +113,8 @@ async def request(mikey):
   if keybo == []:
       count2 = 0
       async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-        await takemichi.send_file(mikey.chat_id, message.media)
+        hek = await draken.get_messages(chat2, message.id)
+        await draken.send_file(mikey.chat_id, hek.media)
         count2 += 1 
       if not count2 == 0:
         await mikey.reply("👆")
