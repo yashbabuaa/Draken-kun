@@ -113,7 +113,7 @@ async def request(mikey):
   if keybo == []:
       count2 = 0
       async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-        hek = await draken.get_messages(chat2, message.id)
+        hek = await draken.get_messages(chat2, ids=message.id)
         await draken.send_file(mikey.chat_id, hek.media)
         count2 += 1 
       if not count2 == 0:
