@@ -72,6 +72,7 @@ async def admincache(mikey):
 @draken.on(events.NewMessage(incoming=True, pattern=r'^\/search(.*)'))
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
 async def request(mikey):
+  global REQ_CHAT
   if mikey.is_private:
     return
   chat = -1001487075546
