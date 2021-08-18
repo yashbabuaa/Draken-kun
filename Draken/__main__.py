@@ -95,6 +95,8 @@ async def request(mikey):
     if not mikey.sender_id in admins:
       return  
     req_log='False'
+  else:
+    req_log='True'
   try:
     query = query[1]
   except IndexError:
