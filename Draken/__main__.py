@@ -29,6 +29,8 @@ draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
 takemichi = TelegramClient(StringSession(string), api_id, api_hash)
 
+REQ_CHAT = -1001183336084
+
 if takemichi:
   print("takemichi connected!!")
 
@@ -86,7 +88,7 @@ async def request(mikey):
     req_log='False'
   else:
     only_files = "Off"
-  if not mikey.chat_id == -1001572963444:
+  if not mikey.chat_id == REQ_CHAT:
     req_log = "False"
   elif mikey.message.text.startswith("/search"):
     if not mikey.sender_id in admins:
@@ -128,7 +130,7 @@ async def request(mikey):
       return
   if req_log == "True":
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
-    message_link = f"https://t.me/c/1572963444/{mikey.id}"
+    message_link = f"https://t.me/c/{REQ_CHAT[4:]}/{mikey.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
     await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
     await mikey.reply("Roger! Request taken, Now wait like a good meme!")
@@ -262,7 +264,7 @@ async def torrentsearch(mikey):
 
 print('Im online!!!')
 
-loop.run_until_complete(get_all_admins(-1001572963444))
+loop.run_until_complete(get_all_admins({REQ_CHAT}))
 
 takemichi.start()
 draken.start()
