@@ -264,7 +264,7 @@ async def torrentsearch(mikey):
 
 print('Im online!!!')
 
-loop.run_until_complete(get_all_admins({REQ_CHAT}))
+loop.run_until_complete(get_all_admins(REQ_CHAT))
 
 takemichi.start()
 draken.start()
