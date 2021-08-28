@@ -29,7 +29,7 @@ draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
 takemichi = TelegramClient(StringSession(string), api_id, api_hash)
 
-REQ_CHAT = -1001183336084
+REQ_CHAT = -1001138532001
 
 if takemichi:
   print("takemichi connected!!")
@@ -75,7 +75,7 @@ async def request(mikey):
   global REQ_CHAT
   if mikey.is_private:
     return
-  chat = -1001487075546
+  chat = -1001455649576
   chat2 = -1001550963689
   query = mikey.message.text.split(" ", 1)
   if mikey.message.text.startswith("/files"):
@@ -100,7 +100,7 @@ async def request(mikey):
   try:
     query = query[1]
   except IndexError:
-    await mikey.reply("Request something bakayaro!")
+    await mikey.reply("Khali fokat #request likh ke kya mila aapko 😑")
     return
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
@@ -122,7 +122,7 @@ async def request(mikey):
         await draken.send_file(mikey.chat_id, hek.media)
         count2 += 1 
       if not count2 == 0:
-        await mikey.reply("👆")
+        await mikey.reply("☝")
         return
       if count2 == 0:
         if req_log == False:
