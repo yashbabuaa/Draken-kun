@@ -75,7 +75,7 @@ async def request(mikey):
   global REQ_CHAT
   if mikey.is_private:
     return
-  chat = -1001267857941
+  chat = -1001528865814
   chat2 = -1001550963689
   query = mikey.message.text.split(" ", 1)
   if mikey.message.text.startswith("/files"):
