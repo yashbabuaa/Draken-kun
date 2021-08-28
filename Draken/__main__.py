@@ -75,7 +75,7 @@ async def request(mikey):
   global REQ_CHAT
   if mikey.is_private:
     return
-  chat = -1001455649576
+  chat = 7272
   chat2 = -1001550963689
   query = mikey.message.text.split(" ", 1)
   if mikey.message.text.startswith("/files"):
@@ -136,7 +136,7 @@ async def request(mikey):
     message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
     await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
-    await mikey.reply("Roger! Request taken, Now wait like a good meme!")
+    await mikey.reply("Ok, Aapka Request Database me nhi hai, @yashbabuaa08 ko aane do ab!")
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start(.*)|/start@DrakenKunRoBot$')) 
 async def start(mikey):
@@ -149,7 +149,7 @@ async def start(mikey):
       msg_to_send = f'**Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\nSize: {info[5]}\n\nMagnet:\n**`{info[4]}`'
       await mikey.reply(msg_to_send, parse_mode='md')
       return
-    await mikey.message.reply(f"Im {bot_name} a bot, \n\nMade by @DontKnowWhyRU and managed by @TvSeriesArchive")
+    await mikey.message.reply(f"Im {bot_name} a bot, \n\nManaged by @yashbabuaa")
     await draken.send_message(-1001161807206, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
