@@ -132,9 +132,9 @@ async def request(mikey):
       m = await mikey.reply("Found some results....", buttons = keybo)
       return
   if req_log == "True":
-    req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
-    message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
-    text = f"Request: {query}\nRequested by: {req_user}\n"
+     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
+     message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
+     text = f"Request: {query}\nRequested by: {req_user}\n"
     await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
     await mikey.reply("Ok, Aapka Request Database me nhi hai, @yashbabuaa08 ko aane do ab!")
   
