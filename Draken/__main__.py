@@ -135,8 +135,8 @@ async def request(mikey):
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
-    await draken.send_message(-1001408011659, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
-    await mikey.reply("Database me nhi hai, @yashbabuaa08 ko aane do ab!")
+    await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
+    await mikey.reply("Ok, Aapka Request Database me nhi hai, @yashbabuaa08 ko aane do ab!")
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start(.*)|/start@DrakenKunRoBot$')) 
 async def start(mikey):
@@ -150,7 +150,7 @@ async def start(mikey):
       await mikey.reply(msg_to_send, parse_mode='md')
       return
     await mikey.message.reply(f"Im {bot_name} a bot, \n\nManaged by @yashbabuaa")
-    await draken.send_message(-1001408011659, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
+    await draken.send_message(-1001161807206, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
 
@@ -158,15 +158,15 @@ async def start(mikey):
 @draken.on(events.InlineQuery)
 async def post_comp(mikey):
   if mikey.text == '':
-      await mikey.answer([], switch_pm='Search in @MovieFlix_Hindi, switch_pm_param='start')
+      await mikey.answer([], switch_pm='Search in @TvSeriesArchive', switch_pm_param='start')
   the_text = mikey.text 
   keybo = []
-  async for message in takemichi.iter_messages(-1001455649576, search=the_text):
+  async for message in takemichi.iter_messages(-1001487075546, search=the_text):
       if len(keybo) > 30:
         await mikey.answer([], switch_pm='Try to be a little specific...', switch_pm_param='')
         return
       msg_id = message.id 
-      link = f"https://t.me/c/1455649576/{str(msg_id)}" 
+      link = f"https://t.me/c/1487075546/{str(msg_id)}" 
       title = message.raw_text.split('\n\n')[0]
       description = message.raw_text.replace('\n', '|')
       keybo.append(
