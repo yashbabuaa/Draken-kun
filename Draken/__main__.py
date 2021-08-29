@@ -150,7 +150,7 @@ async def start(mikey):
       await mikey.reply(msg_to_send, parse_mode='md')
       return
     await mikey.message.reply(f"Im {bot_name} a bot, \n\nManaged by @yashbabuaa")
-    await draken.send_message(-1001161807206, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
+    await draken.send_message(-1001408011659, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
 
