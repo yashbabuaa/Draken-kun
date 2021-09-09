@@ -124,7 +124,6 @@ async def request(mikey):
       if not count2 == 0:
         await mikey.reply("☝")
         await mikey.reply("Buy My Developer A Coffee and donate some for my Development.                      https://telegra.ph/file/bb46507c9af03278aa517.jpg")
-        await mikey.reply( "heh" , text="<b>UPI QR Code : <a href='https://telegra.ph/file/bb46507c9af03278aa517.jpg>SUBIN</a>\nLanguage")
         return
       if count2 == 0:
         if req_log == False:
