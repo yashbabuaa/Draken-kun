@@ -137,7 +137,7 @@ async def request(mikey):
     message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
     await draken.send_message(-1001408011659, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
-    await mikey.reply("Database me nhi hai @yashbabuaa08 ko aane do ab!")
+    await mikey.reply("Database me nhi hai & yashbabuaa bhi 1 week ke liye offline hai🤧")
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start(.*)|/start@DrakenKunRoBot$')) 
 async def start(mikey):
