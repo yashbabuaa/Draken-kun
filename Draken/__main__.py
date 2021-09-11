@@ -77,6 +77,7 @@ async def request(mikey):
     return
   chat = -1001487075546
   chat2 = -1001550963689
+  adc = -1001392274404
   query = mikey.message.text.split(" ", 1)
   if mikey.message.text.startswith("/files"):
     if not mikey.sender_id in admins:
@@ -108,6 +109,15 @@ async def request(mikey):
   count = 0
   text = ''
   if only_files == "Off":
+    async for message in takemichi.iter_messages(adc, search=query):
+      text = message.raw_text.split('•')[0]
+      ignore = list(range(196, 254))
+      msg_id = message.id 
+      if msg_id in ignore:
+        pass
+      else:
+        link = f"https://t.me/c/{str(adc)[4:]}/{str(msg_id)}" 
+        keybo.append([Button.url(text = f'{text[:30]}...',url= link)])
     async for message in takemichi.iter_messages(chat, search=query):
       text = message.raw_text.split('•')[0]
       msg_id = message.id 
@@ -163,7 +173,7 @@ async def post_comp(mikey):
   keybo = []
   async for message in takemichi.iter_messages(-1001487075546, search=the_text):
       if len(keybo) > 30:
-        await mikey.answer([], switch_pm='Try to be a little specific...', switch_pm_param='')
+        await mikey.answer([], switch_pm='Try to be a little specific...', switch_pm_param='start')
         return
       msg_id = message.id 
       link = f"https://t.me/c/1487075546/{str(msg_id)}" 
