@@ -68,8 +68,8 @@ async def admincache(mikey):
   await get_all_admins(mikey.chat_id)
   await mikey.reply('Done!')
   
-@draken.on(events.NewMessage(incoming=True, pattern=r'^\/files(.*)'))
-@draken.on(events.NewMessage(incoming=True, pattern=r'^\/search(.*)'))
+@draken.on(events.NewMessage(incoming=True, pattern=r'^\/fgd(.*)'))
+@draken.on(events.NewMessage(incoming=True, pattern=r'^\/hmm(.*)'))
 @draken.on(events.NewMessage(incoming=True, pattern=r'^#request(.*)'))
 async def request(mikey):
   global REQ_CHAT
@@ -78,7 +78,7 @@ async def request(mikey):
   chat = -1001528865814
   chat2 = -1001550963689
   query = mikey.message.text.split(" ", 1)
-  if mikey.message.text.startswith("/files"):
+  if mikey.message.text.startswith("/fgd"):
     if not mikey.sender_id in admins:
       try:
         await slime.delete()
@@ -91,7 +91,7 @@ async def request(mikey):
     only_files = "Off"
   if not mikey.chat_id == REQ_CHAT:
     req_log = "False"
-  elif mikey.message.text.startswith("/search"):
+  elif mikey.message.text.startswith("/hmm"):
     if not mikey.sender_id in admins:
       return  
     req_log='False'
@@ -150,7 +150,7 @@ async def start(mikey):
       msg_to_send = f'**Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\nSize: {info[5]}\n\nMagnet:\n**`{info[4]}`'
       await mikey.reply(msg_to_send, parse_mode='md')
       return
-    await mikey.message.reply(f"Im {bot_name} a bot, \n\nManaged by @yashbabuaa")
+    await mikey.message.reply(f"Im {bot_name} a bot, \n\nManaged by @yashbabuaa \nStart to kr liya ab nikalo. I work Only For Babuaa.!")
     await draken.send_message(-1001408011659, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
