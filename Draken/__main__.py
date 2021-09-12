@@ -132,7 +132,7 @@ async def request(mikey):
       async for message in takemichi.iter_messages(chat, search = query, reverse = True):
         #hek = await draken.get_messages(chat2, ids=message.id)
         if message.media and (message.video or message.document):
-          await takemichi.send_file(mikey.chat_id, message.text, message.media)
+          await takemichi.send_message(mikey.chat_id, message.text, message.media)
         count2 += 1 
       if not count2 == 0:
         await mikey.reply("👆")
