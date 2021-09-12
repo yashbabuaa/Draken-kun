@@ -31,8 +31,8 @@ draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
 REQ_CHAT = -1001183336084
 
-if takemichi:
-  print("takemichi connected!!")
+#if takemichi:
+#  print("takemichi connected!!")
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
 
@@ -130,31 +130,6 @@ async def start(mikey):
     await mikey.reply("Im up and working!")
 
 
-@draken.on(events.InlineQuery)
-async def post_comp(mikey):
-  if mikey.text == '':
-      await mikey.answer([], switch_pm='Search in @TvSeriesArchive', switch_pm_param='start')
-  the_text = mikey.text 
-  keybo = []
-  async for message in takemichi.iter_messages(-1001487075546, search=the_text):
-      if len(keybo) > 30:
-        await mikey.answer([], switch_pm='Try to be a little specific...', switch_pm_param='start')
-        return
-      msg_id = message.id 
-      link = f"https://t.me/c/1487075546/{str(msg_id)}" 
-      title = message.raw_text.split('\n\n')[0]
-      description = message.raw_text.replace('\n', '|')
-      keybo.append(
-        mikey.builder.article(
-          title=f'{title}',
-          description=f'{description}......',
-          text=f'{message.text}',
-          )
-        )
-  if keybo == []:
-      await mikey.answer([], switch_pm='Couldn\'t find...', switch_pm_param='')
-  await mikey.answer(keybo)
-
 @user_admin
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
 async def de(mikey):
@@ -244,7 +219,6 @@ print('Im online!!!')
 
 loop.run_until_complete(get_all_admins(REQ_CHAT))
 
-takemichi.start()
+
 draken.start()
 draken.run_until_disconnected()
-takemichi.run_until_disconnected()
