@@ -27,7 +27,7 @@ loop = asyncio.get_event_loop()
 
 draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
-takemichi = TelegramClient(StringSession(string), api_id, api_hash)
+#takemichi = TelegramClient(StringSession(string), api_id, api_hash)
 
 REQ_CHAT = -1001183336084
 
@@ -105,45 +105,7 @@ async def request(mikey):
     return
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
-  keybo = []
-  count = 0
   text = ''
-  if only_files == "Off":
-    async for message in takemichi.iter_messages(adc, search=query):
-      text = message.raw_text.split('•')[0]
-      ignore = list(range(196, 254))
-      msg_id = message.id 
-      if msg_id in ignore:
-        pass
-      else:
-        link = f"https://t.me/c/{str(adc)[4:]}/{str(msg_id)}" 
-        keybo.append([Button.url(text = f'{text[:30]}...',url= link)])
-    async for message in takemichi.iter_messages(chat, search=query):
-      text = message.raw_text.split('•')[0]
-      msg_id = message.id 
-      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
-      keybo.append([Button.url(text = f'{text[:30]}...',url= link)])
-  else:
-    pass
-  if keybo == []:
-    sources = [-1001550963689,-1001335426946, -1001335426946, -1001256725342, -1001154980933]
-    count2 = 0
-    for chat in sources:
-      async for message in takemichi.iter_messages(chat, search = query, reverse = True):
-        #hek = await draken.get_messages(chat2, ids=message.id)
-        if message.media and (message.video or message.document):
-          await takemichi.send_file(mikey.chat_id, message.media)
-        count2 += 1 
-      if not count2 == 0:
-        await mikey.reply("👆")
-        return
-    if count2 == 0:
-      if req_log == False:
-        await mikey.reply('Not found')
-        return
-  else:
-      m = await mikey.reply("Found some results....", buttons = keybo)
-      return
   if req_log == "True":
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
