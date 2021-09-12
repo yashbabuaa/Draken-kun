@@ -129,9 +129,10 @@ async def request(mikey):
     sources = [-1001335426946, -1001335426946, -1001256725342, -1001154980933]
     count2 = 0
     for chat in sources:
-      async for message in takemichi.iter_messages(chat, search = query, reverse = True, filter = InputMessagesFilterDocument):
+      async for message in takemichi.iter_messages(chat, search = query, reverse = True):
         #hek = await draken.get_messages(chat2, ids=message.id)
-        await takemichi.send_file(mikey.chat_id, message.media)
+        if message.media and (message.video or message.document):
+          await takemichi.send_file(mikey.chat_id, message.media)
         count2 += 1 
       if not count2 == 0:
         await mikey.reply("👆")
