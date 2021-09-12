@@ -126,18 +126,20 @@ async def request(mikey):
   else:
     pass
   if keybo == []:
-      count2 = 0
-      async for message in takemichi.iter_messages(chat2, search = query, reverse = True, filter = InputMessagesFilterDocument):
-        hek = await draken.get_messages(chat2, ids=message.id)
-        await draken.send_file(mikey.chat_id, hek.media)
+    sources = [-1001335426946, -1001335426946, -1001256725342, -1001154980933]
+    count2 = 0
+    for chat in sources:
+      async for message in takemichi.iter_messages(chat, search = query, reverse = True, filter = InputMessagesFilterDocument):
+        #hek = await draken.get_messages(chat2, ids=message.id)
+        await takemichi.send_file(mikey.chat_id, message.media)
         count2 += 1 
       if not count2 == 0:
         await mikey.reply("👆")
         return
-      if count2 == 0:
-        if req_log == False:
-          await mikey.reply('Not found')
-          return
+    if count2 == 0:
+      if req_log == False:
+        await mikey.reply('Not found')
+        return
   else:
       m = await mikey.reply("Found some results....", buttons = keybo)
       return
