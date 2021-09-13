@@ -128,7 +128,7 @@ async def request(mikey):
     pass
   if keybo == []:
     sources = [-1001550963689]
-    count2 = 
+    count2 = 0
     for chat in sources:
       to_send = []
       async for message in takemichi.iter_messages(chat, search = query, reverse = True):
