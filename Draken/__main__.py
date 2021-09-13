@@ -137,9 +137,8 @@ async def request(mikey):
           to_send.append(hek.media)
         count2 += 1 
       if not to_send == []:
-        m = await mikey.reply('Sending...')
-        await mikey.reply(file=to_send)
-        await m.delete()
+        await draken.send_file(mikey.chat_id, file=to_send)
+        await mikey.reply('👆')
         return
     if count2 == 0:
       if req_log == False:
