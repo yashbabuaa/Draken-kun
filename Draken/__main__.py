@@ -27,12 +27,12 @@ loop = asyncio.get_event_loop()
 
 draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
-#takemichi = TelegramClient(StringSession(string), api_id, api_hash)
+takemichi = TelegramClient(StringSession(string), api_id, api_hash)
 
 REQ_CHAT = -1001183336084
 
-#if takemichi:
-#  print("takemichi connected!!")
+if takemichi:
+  print("takemichi connected!!")
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
 
@@ -105,7 +105,45 @@ async def request(mikey):
     return
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
+  keybo = []
+  count = 0
   text = ''
+  if only_files == "Off":
+    async for message in takemichi.iter_messages(adc, search=query):
+      text = message.raw_text.split('•')[0]
+      ignore = list(range(196, 254))
+      msg_id = message.id 
+      if msg_id in ignore:
+        pass
+      else:
+        link = f"https://t.me/c/{str(adc)[4:]}/{str(msg_id)}" 
+        keybo.append([Button.url(text = f'{text[:30]}...',url= link)])
+    async for message in takemichi.iter_messages(chat, search=query):
+      text = message.raw_text.split('•')[0]
+      msg_id = message.id 
+      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
+      keybo.append([Button.url(text = f'{text[:30]}...',url= link)])
+  else:
+    pass
+  if keybo == []:
+    sources = [-1001550963689]
+    count2 = 0
+    for chat in sources:
+      async for message in takemichi.iter_messages(chat, search = query, reverse = True):
+        #hek = await draken.get_messages(chat2, ids=message.id)
+        if message.media and (message.video or message.document):
+          await takemichi.send_file(mikey.chat_id, message.media)
+        count2 += 1 
+      if not count2 == 0:
+        await mikey.reply("👆")
+        return
+    if count2 == 0:
+      if req_log == False:
+        await mikey.reply('Not found')
+        return
+  else:
+      m = await mikey.reply("Found some results....", buttons = keybo)
+      return
   if req_log == "True":
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
@@ -129,6 +167,31 @@ async def start(mikey):
   else:
     await mikey.reply("Im up and working!")
 
+
+@draken.on(events.InlineQuery)
+async def post_comp(mikey):
+  if mikey.text == '':
+      await mikey.answer([], switch_pm='Search in @TvSeriesArchive', switch_pm_param='start')
+  the_text = mikey.text 
+  keybo = []
+  async for message in takemichi.iter_messages(-1001487075546, search=the_text):
+      if len(keybo) > 30:
+        await mikey.answer([], switch_pm='Try to be a little specific...', switch_pm_param='start')
+        return
+      msg_id = message.id 
+      link = f"https://t.me/c/1487075546/{str(msg_id)}" 
+      title = message.raw_text.split('\n\n')[0]
+      description = message.raw_text.replace('\n', '|')
+      keybo.append(
+        mikey.builder.article(
+          title=f'{title}',
+          description=f'{description}......',
+          text=f'{message.text}',
+          )
+        )
+  if keybo == []:
+      await mikey.answer([], switch_pm='Couldn\'t find...', switch_pm_param='')
+  await mikey.answer(keybo)
 
 @user_admin
 @draken.on(events.CallbackQuery(pattern=b'recomp'))
@@ -219,6 +282,7 @@ print('Im online!!!')
 
 loop.run_until_complete(get_all_admins(REQ_CHAT))
 
-
+takemichi.start()
 draken.start()
 draken.run_until_disconnected()
+takemichi.run_until_disconnected()
