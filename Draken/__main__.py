@@ -37,6 +37,7 @@ if takemichi:
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level = logging.INFO)
 
 logger = logging.getLogger("__name__")
+mylog = logging.getLogger('Draken')
 
 hina = TelegraphPoster(use_api=True)
 hina.create_api_token('DontKnow')
@@ -127,7 +128,7 @@ async def request(mikey):
     pass
   if keybo == []:
     sources = [-1001550963689]
-    count2 = 0
+    count2 = 
     for chat in sources:
       to_send = []
       async for message in takemichi.iter_messages(chat, search = query, reverse = True):
@@ -136,7 +137,9 @@ async def request(mikey):
           to_send.append(hek.media)
         count2 += 1 
       if not to_send == []:
+        m = await mikey.reply('Sending...')
         await mikey.reply(file=to_send)
+        await m.delete()
         return
     if count2 == 0:
       if req_log == False:
