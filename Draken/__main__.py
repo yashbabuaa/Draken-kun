@@ -147,7 +147,11 @@ async def request(mikey):
       return
   if req_log == "True":
     h = [int(s) for s in re.findall(r'-?\d+\.?\d*', query)]
-    if h == [] or len(str(h[0])) != 4:
+    cnt = 0
+    for i in h:
+      if i == 4:
+        cnt += 1
+    if h == [] or cnt == 0:
       return await mikey.reply('You didn\'t mention **year!**, Please check [this](https://t.me/c/1183336084/84418) and request!')
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
