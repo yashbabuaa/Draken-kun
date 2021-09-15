@@ -146,6 +146,9 @@ async def request(mikey):
       m = await mikey.reply("Found some results....", buttons = keybo)
       return
   if req_log == "True":
+    h = [int(s) for s in re.findall(r'-?\d+\.?\d*', query)]
+    if len(h) != 0 and len(h[0]) != 4:
+      return await mikey.reply('You didn\'t mention **year!**, Please check [this](https://t.me/c/1183336084/84418) and request!')
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
