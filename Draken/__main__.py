@@ -149,7 +149,7 @@ async def request(mikey):
     h = [int(s) for s in re.findall(r'-?\d+\.?\d*', query)]
     cnt = 0
     for i in h:
-      if i == 4:
+      if len(str(i)) == 4:
         cnt += 1
     if h == [] or cnt == 0:
       return await mikey.reply('You didn\'t mention **year!**, Please check [this](https://t.me/c/1183336084/84418) and request!')
