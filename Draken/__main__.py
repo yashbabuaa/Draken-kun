@@ -152,7 +152,11 @@ async def request(mikey):
       if len(str(i)) == 4:
         cnt += 1
     if h == [] or cnt == 0:
-      return await mikey.reply('You didn\'t mention **year!**, Please check [this](https://t.me/c/1183336084/84418) and request!')
+      m = await mikey.reply('You didn\'t mention **year!**, Please check [this](https://t.me/c/1183336084/84418) and request!')
+      await asyncio.sleep(10)
+      await mikey.delete()
+      await m.delete()
+      return
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
