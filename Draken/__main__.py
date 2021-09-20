@@ -29,7 +29,7 @@ draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
 takemichi = TelegramClient(StringSession(string), api_id, api_hash)
 
-REQ_CHAT = -1001183336084
+REQ_CHAT = -1001555963275
 
 if takemichi:
   print("takemichi connected!!")
