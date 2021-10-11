@@ -119,11 +119,6 @@ async def request(mikey):
       else:
         link = f"https://t.me/c/{str(adc)[4:]}/{str(msg_id)}" 
         keybo.append([Button.url(text = f'{text[:30]}...',url= link)])
-    async for message in takemichi.iter_messages(chat, search=query):
-      text = message.raw_text.split('•')[0]
-      msg_id = message.id 
-      link = f"https://t.me/c/{str(chat)[4:]}/{str(msg_id)}" 
-      keybo.append([Button.url(text = f'{text[:30]}...',url= link)])
   else:
     pass
   if keybo == []:
