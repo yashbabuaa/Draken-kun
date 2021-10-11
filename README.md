@@ -1,2 +1,1 @@
-# Draken-kun
-Normal auto filter
+# Normal auto filter
