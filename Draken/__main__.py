@@ -131,7 +131,7 @@ async def request(mikey):
           await draken.send_file(mikey.chat_id, file=hek.media)
           count2 += 1 
       if not count2 == 0:
-        await mikey.reply('👆')
+        await mikey.reply('☝')
         return
     if count2 == 0:
       if req_log == False:
