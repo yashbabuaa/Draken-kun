@@ -78,7 +78,7 @@ async def request(mikey):
     return
   chat = -1001528865814
   chat2 = -1001550963689
-  abc = -1001528865814
+  adc = -1001528865814
   query = mikey.message.text.split(" ", 1)
   if mikey.message.text.startswith("/files"):
     if not mikey.sender_id in admins:
