@@ -29,7 +29,7 @@ draken = TelegramClient('bot', api_id, api_hash).start(bot_token=draken_token)
 
 takemichi = TelegramClient(StringSession(string), api_id, api_hash)
 
-REQ_CHAT = -1001495696882
+REQ_CHAT = -1001533914983
 
 if takemichi:
   print("takemichi connected!!")
@@ -76,9 +76,8 @@ async def request(mikey):
   global REQ_CHAT
   if mikey.is_private:
     return
-  chat = -1001487075546
+  chat = -1001528865814
   chat2 = -1001550963689
-  adc = -1001392274404
   query = mikey.message.text.split(" ", 1)
   if mikey.message.text.startswith("/files"):
     if not mikey.sender_id in admins:
@@ -102,7 +101,7 @@ async def request(mikey):
   try:
     query = query[1]
   except IndexError:
-    await mikey.reply("Request something bakayaro!")
+    await mikey.reply("Request something!")
     return
   if mikey.reply_to_msg_id:
     mikey = await mikey.get_reply_message()
@@ -131,7 +130,7 @@ async def request(mikey):
           await draken.send_file(mikey.chat_id, file=hek.media)
           count2 += 1 
       if not count2 == 0:
-        await mikey.reply('👆')
+        await mikey.reply('☝')
         return
     if count2 == 0:
       if req_log == False:
@@ -144,7 +143,7 @@ async def request(mikey):
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
     message_link = f"https://t.me/c/{str(REQ_CHAT)[4:]}/{mikey.id}"
     text = f"Request: {query}\nRequested by: {req_user}\n"
-    await draken.send_message(-1001550475256, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
+    await draken.send_message(-1001408011659, text, buttons = [[Button.url(text = "Message", url = message_link)], [Button.inline(text="Request Complete", data = "recomp")]])
     await mikey.reply("Roger! Request taken, Now wait like a good meme!")
   
 @draken.on(events.NewMessage(incoming=True, pattern=r'^/start(.*)|/start@DrakenKunRoBot$')) 
@@ -158,8 +157,8 @@ async def start(mikey):
       msg_to_send = f'**Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\nSize: {info[5]}\n\nMagnet:\n**`{info[4]}`'
       await mikey.reply(msg_to_send, parse_mode='md')
       return
-    await mikey.message.reply(f"Im {bot_name} a bot, \n\nMade by @HeyDoUKnowMe and managed by @TvSeriesArchive")
-    await draken.send_message(-1001161807206, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
+    await mikey.message.reply(f"Im {bot_name} a bot, \n\nMade by @HeyDoUKnowMe and managed by @yashbabuaa08")
+    await draken.send_message(-1001408011659, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
 
