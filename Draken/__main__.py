@@ -78,7 +78,7 @@ async def request(mikey):
     return
   chat = -1001528865814
   chat2 = -1001550963689
-  adc = -1001528865814
+  adc = -1001601532779
   query = mikey.message.text.split(" ", 1)
   if mikey.message.text.startswith("/files"):
     if not mikey.sender_id in admins:
@@ -138,7 +138,7 @@ async def request(mikey):
         await mikey.reply('Not found')
         return
   else:
-      m = await mikey.reply("Found some results....", buttons = keybo)
+      m = await mikey.reply("Found some results. \n\nJoining Link: \nhttps://t.me/+VF9xi3DB5Bc2Mjg1", buttons = keybo)
       return
   if req_log == "True":
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
