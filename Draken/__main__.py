@@ -132,6 +132,7 @@ async def request(mikey):
           count2 += 1 
       if not count2 == 0:
         await mikey.reply('☝')
+        await mikey.reply('Download ur Desired File \nPowered by @BabuaaWorld')
         return
     if count2 == 0:
       if req_log == False:
@@ -139,6 +140,7 @@ async def request(mikey):
         return
   else:
       m = await mikey.reply("Found some results. \n\nJoining Link: \nhttps://t.me/+VF9xi3DB5Bc2Mjg1", buttons = keybo)
+      await mikey.reply('Download ur Desired File \nPowered by @BabuaaWorld')
       return
   if req_log == "True":
     req_user = f"[{mikey.sender.first_name}](tg://user?id={mikey.sender_id})" 
