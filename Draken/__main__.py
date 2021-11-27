@@ -158,7 +158,7 @@ async def start(mikey):
       msg_to_send = f'**Name: {info[0]}\nCategory: {info[1]}\nLeechers: {info[2]}\nSeeders: {info[3]}\nSize: {info[5]}\n\nMagnet:\n**`{info[4]}`'
       await mikey.reply(msg_to_send, parse_mode='md')
       return
-    await mikey.message.reply(f"Im {bot_name} a bot, \n\nMade by @HeyDoUKnowMe and managed by @yashbabuaa08")
+    await mikey.message.reply(f"Im {bot_name} a bot, \n\nPowered by @BabuaaWorld \nYou can join our req group via @ReqGroupLink")
     await draken.send_message(-1001408011659, f"#START\n[{mikey.sender.first_name}](tg://user?id={mikey.sender_id}) started the bot!")
   else:
     await mikey.reply("Im up and working!")
