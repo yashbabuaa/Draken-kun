@@ -139,7 +139,7 @@ async def request(mikey):
         await mikey.reply('Not found')
         return
   else:
-      m = await mikey.reply("Found some results, \n\nJoining Link: \nhttps://t.me/+VF9xi3DB5Bc2Mjg1", buttons = keybo)
+      m = await mikey.reply("Found some results. \n\nJoining Link: \nhttps://t.me/+VF9xi3DB5Bc2Mjg1", buttons = keybo)
       await mikey.reply('Download your Desired File & Enjoy. \n\nPowered by @BabuaaWorld')
       return
   if req_log == "True":
@@ -169,7 +169,7 @@ async def start(mikey):
 @draken.on(events.InlineQuery)
 async def post_comp(mikey):
   if mikey.text == '':
-      await mikey.answer([], switch_pm='Search in @BabuaaWorld, switch_pm_param='start')
+      await mikey.answer([], switch_pm='Search in @TvSeriesArchive', switch_pm_param='start')
   the_text = mikey.text 
   keybo = []
   async for message in takemichi.iter_messages(-1001487075546, search=the_text):
