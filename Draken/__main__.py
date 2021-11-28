@@ -139,7 +139,7 @@ async def request(mikey):
         await mikey.reply('Not found')
         return
   else:
-      m = await mikey.reply("Found some results, \n\nJoining Link: ", buttons = keybo)
+      m = await mikey.reply("Found some results, \n\nJoining Link: \nhttps://t.me/+VF9xi3DB5Bc2Mjg1", buttons = keybo)
       await mikey.reply('Download your Desired File & Enjoy. \n\nPowered by @BabuaaWorld')
       return
   if req_log == "True":
