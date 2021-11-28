@@ -169,15 +169,15 @@ async def start(mikey):
 @draken.on(events.InlineQuery)
 async def post_comp(mikey):
   if mikey.text == '':
-      await mikey.answer([], switch_pm='Search in @TvSeriesArchive', switch_pm_param='start')
+      await mikey.answer([], switch_pm='Search in @BabuaaWorld, switch_pm_param='start')
   the_text = mikey.text 
   keybo = []
-  async for message in takemichi.iter_messages(-1001487075546, search=the_text):
+  async for message in takemichi.iter_messages(-1001528865814, search=the_text):
       if len(keybo) > 30:
         await mikey.answer([], switch_pm='Try to be a little specific...', switch_pm_param='start')
         return
       msg_id = message.id 
-      link = f"https://t.me/c/1487075546/{str(msg_id)}" 
+      link = f"https://t.me/c/1528865814/{str(msg_id)}" 
       title = message.raw_text.split('\n\n')[0]
       description = message.raw_text.replace('\n', '|')
       keybo.append(
